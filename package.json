@@ -12,7 +12,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-architects/module-federation": "^19.0.3",
+    "@angular-architects/module-federation": "^18.0.6",
+    "@angular-architects/module-federation-tools": "^19.0.3",
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
     "@angular/core": "^19.2.0",
