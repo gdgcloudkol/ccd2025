@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+.bg-dark {
+  background-color: #000;
+}
+
+@font-face {
+  font-family: "GoogleSans-Bold";
+  src: url("../public/assets/fonts/GoogleSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GoogleSans-Medium";
+  src: url("../public/assets/fonts/GoogleSans-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GoogleSans-Regular";
+  src: url("../public/assets/fonts/GoogleSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
