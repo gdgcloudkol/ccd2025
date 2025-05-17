@@ -1,0 +1,87 @@
+{
+  "date": "19th July 2025",
+  "venue": "Taj Taal Kutir, Newtown",
+  "venueLink": "https://maps.app.goo.gl/6VczTpM414yv9D2U8",
+  "hero2Marquee": [
+    "CCD'25",
+    "Innovative Learners",
+    "Expert Speakers",
+    "Networking"
+  ],
+  "hero2Text": "We're offering you the opportunity to learn about Cloud Technology, Google Cloud Certifications, Machine Learning, Web Technologies, and App Development from industry experts at Google Cloud Community Day 2025. Our experts will discuss how Google Cloud Platform and Google Cloud Certifications can help you advance your career by increasing your knowledge in these areas.",
+  "cfsText": "A community organized Cloud Conference with industry experts presenting on cutting-edge topics! Cloud Community Day is powered by our shared belief that when developers come together to exchange ideas, remarkable things can happen.",
+  "cfsLink": "https://go.gdgcloudkol.org/ccd25-cfs",
+  "aboutText": "Cloud Community Day is a community-driven event that brings together developers, cloud enthusiasts, and industry experts to share knowledge, insights, and experiences related to technology. Over the years we have been able to create a platform with -",
+  "aboutStats": [
+    {
+      "name": "Members",
+      "value": "10,000"
+    },
+    {
+      "name": "Volunteers",
+      "value": 100
+    },
+    {
+      "name": "Speakers",
+      "value": 500
+    },
+    {
+      "name": "Sponsors",
+      "value": 20
+    },
+    {
+      "name": "Partners",
+      "value": 100
+    }
+  ],
+  "pastSpeakers": [
+    {
+      "name": "Anubhav Singh",
+      "role": "Co-founder",
+      "company": "Callchimp.ai | GDE in ML & GCP",
+      "image": "https://github.com/xprilion.png"
+    },
+    {
+      "name": "Aritra Roy Gosthipaty",
+      "role": "ML Engineer",
+      "company": "PyImageSearch | GDE in ML",
+      "image": "https://github.com/ariG23498.png"
+    },
+    {
+      "name": "Imran Roshan",
+      "role": "Cyber Security Professional",
+      "company": "Deloitte TTL | GDE - GCP",
+      "image": "https://pbs.twimg.com/profile_images/1767598349254103043/eA26RPxn_400x400.jpg"
+    },
+    {
+      "name": "Ritwik Raha",
+      "role": "Machine Learning Engineer",
+      "company": "PyImageSearch | GDE in ML",
+      "image": "https://github.com/ritwikraha.png"
+    },
+    {
+      "name": "Varun Raj Manoharan",
+      "role": "CIO",
+      "company": "Hellonext Inc. | Firebase GDE",
+      "image": "https://github.com/varun-raj.png"
+    },
+    {
+      "name": "Rishiraj Acharya",
+      "role": "ML Engineer",
+      "company": "Tensorlake.ai",
+      "image": "https://www.github.com/rishiraj.png"
+    },
+    {
+      "name": "Avirup Basu",
+      "role": "Technical Lead",
+      "company": "P360",
+      "image": "https://github.com/avirup171.png"
+    },
+    {
+      "name": "Reshab Das",
+      "role": "Senior Software Engineer",
+      "company": "Ergeon",
+      "image": "https://github.com/reshab48.png"
+    }
+  ]
+}

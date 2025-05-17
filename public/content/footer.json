@@ -1,0 +1,77 @@
+{
+  "socialLinks": [
+    {
+      "platform": "Instagram",
+      "url": "https://instagram.com/gdgcloudkol",
+      "username": "@gdgcloudkol",
+      "icon": "/images/socials/instagram.svg"
+    },
+    {
+      "platform": "X",
+      "url": "https://twitter.com/gdgcloudkol",
+      "username": "@gdgcloudkol",
+      "icon": "/images/socials/x.svg"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/company/gdgcloudkol",
+      "username": "@gdgcloudkol",
+      "icon": "/images/socials/linkedin.svg"
+    },
+    {
+      "platform": "Facebook",
+      "url": "https://facebook.com/gdgcloudkol",
+      "username": "@gdgcloudkol",
+      "icon": "/images/socials/facebook.svg"
+    }
+  ],
+  "about": [
+    {
+      "name": "Google Developer Groups",
+      "link": "https://gdg.community.dev/"
+    },
+    {
+      "name": "Women Techmakers",
+      "link": "https://developers.google.com/womentechmakers"
+    },
+    {
+      "name": "GDG Cloud Kolkata",
+      "link": "https://gdg.community.dev/gdg-cloud-kolkata/"
+    }
+  ],
+  "resources": [
+    {
+      "name": "Sponsorship Brochure",
+      "link": "https://go.gdgcloudkol.org/ccd25-sponsor"
+    },
+    {
+      "name": "Call for Speakers",
+      "link": "https://go.gdgcloudkol.org/ccd25-cfs"
+    },
+    {
+      "name": "Frequently Asked Questions",
+      "link": "/resources/faq"
+    }
+  ],
+  "legal": [
+    {
+      "name": "Code of Conduct",
+      "link": "/code-of-conduct"
+    },
+    {
+      "name": "Privacy Policy",
+      "link": "/privacy"
+    }
+  ],
+  "footerText": {
+    "heading": "Follow Us For More Updates",
+    "description": "Let's get connected so that we can reach out to each other via a simple notification. Stake out #CCDkol2025 for the updates and news.",
+    "copyright": "CCD kolkata @2025"
+  },
+  "contact": [
+    {
+      "name": "Contact Us",
+      "link": "mailto:gdgcloudkol@gmail.com"
+    }
+  ]
+}

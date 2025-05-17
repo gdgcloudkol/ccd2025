@@ -1,0 +1,163 @@
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "../ui/ThemeToggle";
+import Logo from "./Logo";
+import { ArrowRight } from "lucide-react";
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const currentPath = pathname;
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <nav className="bg-background p-3 fixed top-4 left-0 right-0 z-[999] w-11/12 xl:w-10/12 mx-auto rounded-full border border-border">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <div className="flex items-center gap-8">
+            <div className="flex items-center xl:border-r pr-8 border-border">
+              <Logo />
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              {[
+                { to: "/", label: "Home" },
+                { to: "/speakers", label: "Speakers" },
+                { to: "/schedule", label: "Schedule" },
+                { to: "/team", label: "Team" },
+              ].map(({ to, label }) => (
+                <div key={to} className="flex flex-col items-center">
+                  <Link
+                    href={to}
+                    className={`text-muted-foreground font-extralight hover:text-primary transition-colors px-2`}
+                  >
+                    {label}
+                  </Link>
+                  {currentPath === to && (
+                    <span className="absolute min-w-20 bottom-0 h-1.5 bg-google-blue rounded-t-full rounded-b-none"></span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Login Button and Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
+            <Link
+              href="https://www.commudle.com/communities/gdg-cloud-kolkata/events/cloud-community-days-kolkata-2025"
+              className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-light flex items-center whitespace-nowrap"
+            >
+              Apply for Tickets
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="bg-primary text-primary-foreground p-3 rounded-full focus:outline-none transition-transform duration-300 hover:scale-105"
+            >
+              {isMenuOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden absolute left-0 right-0 mt-2 bg-background rounded-2xl shadow-lg border border-border transform transition-all duration-300 ease-in-out ${
+            isMenuOpen
+              ? "opacity-100 translate-y-0 visible"
+              : "opacity-0 -translate-y-2 invisible"
+          }`}
+        >
+          <div className="p-6 space-y-6">
+            <div className="flex flex-col space-y-4">
+              <Link
+                href="/"
+                className="text-foreground font-light hover:text-primary transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/speakers"
+                className="text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Speakers
+              </Link>
+
+              <Link
+                href="/schedule"
+                className="text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Schedule
+              </Link>
+              <Link
+                href="/team"
+                className="text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Team
+              </Link>
+              <Link
+                href="/login"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-light inline-block text-center mt-4 hover:opacity-90 transition-opacity"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login Now
+              </Link>
+              <div className="border-t border-border mt-4 pt-4">
+                <div className="flex items-center justify-between text-foreground py-2">
+                  <span className="font-light">Theme</span>
+                  <ThemeToggle />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}

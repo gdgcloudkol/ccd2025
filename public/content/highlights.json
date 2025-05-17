@@ -1,0 +1,50 @@
+{
+  "title": "Watch last year's highlights",
+  "description": "We're offering you the opportunity to learn about Cloud Technology, Google Cloud Certifications, Machine Learning, Web Technologies, and App Development from industry experts at Google Cloud Community Day 2025. Our experts will discuss how Google Cloud Platform and Google Cloud Certifications can help you advance your career by increasing your knowledge in these areas.",
+  "year": "2024",
+  "stats": [
+    {
+      "value": "2,500+",
+      "label": "Attendees"
+    },
+    {
+      "value": "20+",
+      "label": "Speakers"
+    },
+    {
+      "value": "10+",
+      "label": "Extended Events"
+    },
+    {
+      "value": "30+",
+      "label": "Volunteers"
+    }
+  ],
+  "video": {
+    "url": "https://www.youtube.com/embed/dRWI-w-ZR0M",
+    "title": "Google Cloud Community Day 2023 Highlights",
+    "hashtag": "GCCD2024 Highlights"
+  },
+  "grid": [
+    {
+      "src": "/images/highlights/grid_image_1.webp",
+      "alt": "Event highlight 1",
+      "caption": "#GCCD2024"
+    },
+    {
+      "src": "/images/highlights/grid_image_2.webp",
+      "alt": "Event highlight 2",
+      "caption": "Registrations"
+    },
+    {
+      "src": "/images/highlights/grid_image_3.webp",
+      "alt": "Event highlight 3",
+      "caption": "Attendees"
+    },
+    {
+      "src": "/images/highlights/grid_image_4.webp",
+      "alt": "Event highlight 4",
+      "caption": "Event in full swing"
+    }
+  ]
+}
