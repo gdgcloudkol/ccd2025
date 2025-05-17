@@ -70,13 +70,16 @@ export default function HomePage() {
         </div>
       </section>
       <AboutFrame />
-      <SvgBand reverse={true} pauseOnHover={true} className="bg-[--blue50]" />
+      <SvgBand
+        reverse={true}
+        pauseOnHover={true}
+          className="bg-[var(--marquee-backgroundBlue)]"
+      />
       <HeroSection2 />
       <SvgBand
         reverse={false}
         pauseOnHover={true}
-        className="bg-[--yellow50]"
-      />
+  className="bg-[var(--marquee-backgroundYellow)]"      />
       <div className="my-20">
         <CallForSpeakers />
       </div>

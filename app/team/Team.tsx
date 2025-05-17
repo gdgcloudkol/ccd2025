@@ -9,7 +9,7 @@ import { TeamSection } from "@/components/ui/TeamSection";
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 md:px-12 py-14 relative z-10">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-12 relative">

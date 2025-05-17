@@ -77,7 +77,7 @@ const Marquee: React.FC<MarqueeProps> = ({
     <div
       {...props}
       className={classNames(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)] bg-background text-foreground",
+        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)] text-foreground",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
@@ -93,10 +93,10 @@ const Marquee: React.FC<MarqueeProps> = ({
             className={classNames(
               "flex shrink-0 justify-around [gap:var(--gap)] text-foreground",
               {
-                "animate-marquee flex-row": !vertical,
+                "animate-marquee-rtl flex-row": !vertical && !reverse,
+                "animate-marquee-ltr flex-row": !vertical && reverse,
                 "animate-marquee-vertical flex-col": vertical,
                 "group-hover:[animation-play-state:paused]": pauseOnHover,
-                "[animation-direction:reverse]": reverse,
               }
             )}
           >

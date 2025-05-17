@@ -25,7 +25,7 @@ const CodeOfConduct: React.FC = () => {
   const conductData = codeOfConduct as CodeOfConductData;
 
   return (
-    <div className="container mx-auto px-4 md:px-12 py-14 relative z-10 bg-background text-foreground">
+    <div className="container mx-auto px-4 md:px-12 py-14 relative z-10 text-foreground">
       <div className="min-h-screen overflow-hidden">
         <div className="">
           <PageHeader>{conductData.title}</PageHeader>
