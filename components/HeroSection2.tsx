@@ -9,7 +9,7 @@ const HeroSection2 = () => {
           <h2 className="text-2xl md:text-5xl font-bold mb-3 max-sm:w-32 text-[--foreground] flex flex-col xl:flex-row xl:items-center">
             <span>Hello to,</span>
             <TextLoop
-              className="inline-block xl:ml-2 text-[--red50]"
+              className="inline-block xl:ml-2 text-[var(--red50)]"
               interval={3}
               transition={{ duration: 0.5 }}
             >

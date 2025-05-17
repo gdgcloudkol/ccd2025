@@ -30,7 +30,7 @@ const CardContainer: React.FC<CardContainerProps> = ({
       className={`flex items-center justify-center p-4 relative ${className}`}
     >
       <div
-        className={`w-full ${maxWidth} overflow-hidden border border-border bg-card rounded-3xl p-[1px]`}
+        className={`w-full ${maxWidth} overflow-hidden border border-border bg-cfs-gradient  rounded-3xl p-[1px]`}
       >
         {/* Header with gradient */}
         <div className="relative h-16 flex items-center px-6">

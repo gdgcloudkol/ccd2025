@@ -35,7 +35,7 @@ const SvgBand: React.FC<SvgBandProps> = ({
         {bandItems.map((item, index) => (
           <div key={index} className="mx-2 flex items-center justify-center">
             {item.type === "text" ? (
-              <span className="text-[--foreground] text-[22px] hover:scale-110 transition-all duration-300">
+              <span className="text-white text-[22px] hover:scale-110 transition-all duration-300">
                 {item.content}
               </span>
             ) : (

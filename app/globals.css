@@ -45,6 +45,7 @@
   --color-google-red: #ea4336;
   --color-google-yellow: #faab00;
   --color-google-green: #34a853;
+  
 }
 
 :root {
@@ -93,6 +94,17 @@
   --google-red: #ea4336;
   --google-yellow: #faab00;
   --google-green: #34a853;
+  --marquee-backgroundBlue: #428eff;
+  --marquee-backgroundYellow: #ffbb01;
+   --white: #fff;
+    --black: #000;
+     --gray20: #e5e7eb;
+    --gray: #676c72;
+    --gray60: #4b5563;
+    --blue50: #4285f4;
+    --red50: #ea4336;
+    --green50: #34a853;
+    --yellow50: #faab00;
 }
 
 .dark {
@@ -127,6 +139,17 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --marquee-backgroundBlue: #428eff;
+  --marquee-backgroundYellow: #ffbb01;
+   --white: #fff;
+    --black: #000;
+     --gray20: #e5e7eb;
+    --gray: #676c72;
+    --gray60: #4b5563;
+    --blue50: #4285f4;
+    --red50: #ea4336;
+    --green50: #34a853;
+    --yellow50: #faab00;
 }
 
 @layer base {
@@ -154,4 +177,93 @@
   .animate-slide-out {
     animation: slide-out 0.5s ease-in-out;
   }
+
+  /* Define distinct animation classes for left-to-right and right-to-left */
+  .animate-marquee-rtl {
+    animation: marquee-rtl var(--duration, 40s) linear infinite;
+  }
+
+  .animate-marquee-ltr {
+    animation: marquee-ltr var(--duration, 40s) linear infinite;
+  }
+
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration, 40s) linear infinite;
+  }
+
+  /* Define all keyframes */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Right to Left (default) */
+  @keyframes marquee-rtl {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Left to Right */
+  @keyframes marquee-ltr {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes marquee-vertical {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.bg-cfs-gradient {
+  background: linear-gradient(
+    103.63deg,
+    #ea4336 0.58%,
+    #4285f4 44.38%,
+    #34a853 84.92%,
+    #faab00 126.11%
+  );
 }

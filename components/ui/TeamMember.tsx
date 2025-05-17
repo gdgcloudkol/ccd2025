@@ -32,10 +32,10 @@ export function TeamMember(props: TeamMemberProps) {
 
   return (
     <div
-      className={`border-2 border-[--border] rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative h-full flex flex-col 
+      className={`border-2 border-[#000] dark:border-[#fff] rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative h-full flex flex-col 
       ${
         leadId.includes(id)
-          ? "border-4 border-t-[--destructive] border-b-[--blue50] border-l-[--yellow50] border-r-[--green50]"
+          ? "border-4 border-t-[var(--destructive)] border-b-[var(--blue50)] border-l-[var(--yellow50)] border-r-[var(--green50)]"
           : ""
       }
       `}
@@ -44,7 +44,7 @@ export function TeamMember(props: TeamMemberProps) {
       <div
         className={`${cardColor} px-4 py-6 flex justify-between items-center rounded-t-lg relative`}
       >
-        <span className="font-bold text-2xl text-[--primary-foreground] mb-4">
+        <span className="font-bold text-2xl text-[var(--primary-foreground)] mb-4">
           {leadId.includes(id) ? "Lead" : ""} {designation}
         </span>
         <img
@@ -55,7 +55,7 @@ export function TeamMember(props: TeamMemberProps) {
       </div>
 
       {/* Curvy Member Image */}
-      <div className="bg-[--secondary] dark:bg-[--muted] lg:h-96 relative z-50 -mt-6 rounded-t-3xl overflow-hidden border-2 border-[--border]">
+      <div className="bg-[var(--secondary)] dark:bg-[var(--muted)] lg:h-96 relative z-50 -mt-6 rounded-t-3xl overflow-hidden border-2 border-[#000] dark:border-[#fff]">
         <img
           src={image || "/placeholder.svg"}
           alt={title}
@@ -64,11 +64,11 @@ export function TeamMember(props: TeamMemberProps) {
       </div>
 
       {/* Curvy Member Info */}
-      <div className="p-4 bg-[--card] dark:bg-[--muted] rounded-t-3xl -mt-20 relative z-50 border-t-2 border-[--border] flex-grow flex flex-col">
-        <h3 className="font-bold text-xl text-[--card-foreground] dark:text-[--card-foreground] line-clamp-1">
+      <div className="p-4 bg-[var(--card)] dark:bg-[var(--muted)] rounded-t-3xl -mt-20 relative z-50 border-t-2 border-[#000] dark:border-[#fff] flex-grow flex flex-col">
+        <h3 className="font-bold text-xl text-[var(--card-foreground)] dark:text-[var(--card-foreground)] line-clamp-1">
           {title}
         </h3>
-        <p className="text-xl text-[--muted-foreground] dark:text-[--muted-foreground] mb-2 line-clamp-2 min-h-[2rem]">
+        <p className="text-xl text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mb-2 line-clamp-2 min-h-[2rem]">
           {content}
         </p>
 
@@ -80,7 +80,7 @@ export function TeamMember(props: TeamMemberProps) {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-7 h-7 rounded-full bg-[--secondary] dark:bg-[--primary] hover:bg-[--muted] dark:hover:bg-[--muted] transition-colors"
+              className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--secondary)] dark:bg-[var(--primary)] hover:bg-[var(--muted)] dark:hover:bg-[var(--muted)] transition-colors border border-[#000] dark:border-[#fff]"
             >
               <img
                 src={link.icon}
