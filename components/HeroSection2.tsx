@@ -6,7 +6,7 @@ const HeroSection2 = () => {
     <div className="flex flex-col md:flex-row justify-between items-center w-full relative">
       <div className="w-full md:w-[60%] p-4 ml-auto">
         <div className="w-full md:pr-4">
-          <h2 className="text-2xl md:text-5xl font-bold mb-3 max-sm:w-32 text-[--foreground] flex flex-col xl:flex-row xl:items-center">
+          <h2 className="text-2xl md:text-5xl font-bold mb-3 max-sm:w-32 text-[var(--foreground)] flex flex-col xl:flex-row xl:items-center">
             <span>Hello to,</span>
             <TextLoop
               className="inline-block xl:ml-2 text-[var(--red50)]"

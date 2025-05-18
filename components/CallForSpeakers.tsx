@@ -108,7 +108,7 @@ export default function CallForSpeakers() {
           </div>
         </div>
 
-    <div className="bg-white dark:bg-black rounded-3xl -mt-4">
+        <div className="bg-white dark:bg-black rounded-3xl -mt-4">
           {/* Content wrapper */}
           <div className="p-4 pt-10">
             <div className="flex flex-col md:flex-row gap-8">

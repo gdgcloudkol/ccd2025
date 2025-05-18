@@ -13,9 +13,9 @@ export default function HomePage() {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <section className="min-h-screen xl:min-h-[110dvh] flex flex-col justify-center items-center text-center px-4 pt-20 pb-32 relative dark:bg-[--black]">
+      <section className="min-h-screen xl:min-h-[110dvh] flex flex-col justify-center items-center text-center px-4 pt-20 pb-32 relative dark:bg-[var(--black)]">
         <div className="container mx-auto z-10 relative xl:-mt-10">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-[--foreground] dark:text-[--white]">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-[var(--foreground)] dark:text-[var(--white)]">
             Cloud Community
             <br />
             <div className="flex items-center justify-center">
@@ -25,13 +25,13 @@ export default function HomePage() {
                 className="h-12 w-auto mr-6"
               />
               Days{" "}
-              <span className="text-[--google-blue] border-2 border-[--google-blue] rounded-full px-6 py-2 text-3xl md:text-4xl ml-4 mt-3">
+              <span className="text-[var(--google-blue)] border-2 border-[var(--google-blue)] rounded-full px-6 py-2 text-3xl md:text-4xl ml-4 mt-5">
                 2025
               </span>
             </div>
           </h1>
 
-          <p className="text-xl md:text-2xl mt-8 mb-12 text-[--blue50] dark:text-[--gray20]">
+          <p className="text-xl md:text-2xl mt-8 mb-12 text-[var(--blue50)] dark:text-[var(--gray20)]">
             {CONTENT.date} -{" "}
             <Link
               href={CONTENT.venueLink}
@@ -44,7 +44,7 @@ export default function HomePage() {
 
           <Link
             href="https://www.commudle.com/communities/gdg-cloud-kolkata/events/cloud-community-days-kolkata-2025"
-            className="bg-[--black] text-[--white] dark:bg-[--white] dark:text-[--black] px-8 py-3 rounded-full font-medium text-lg inline-flex items-center"
+            className="bg-[var(--black)] text-[var(--white)] dark:bg-[var(--white)] dark:text-[var(--black)] px-8 py-3 rounded-full font-medium text-lg inline-flex items-center"
           >
             <img
               src="/images/elements/gemini.svg"

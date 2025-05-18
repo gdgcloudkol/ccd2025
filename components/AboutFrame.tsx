@@ -3,19 +3,19 @@ import GridBackgroud from "./ui/GridBackgroud";
 
 const AboutFrame = () => {
   return (
-    <section className="relative md:min-h-screen overflow-hidden z-10 text-[--foreground]">
+    <section className="relative md:min-h-screen overflow-hidden z-10 text-[var(--foreground)]">
       <div className="md:px-32 px-4 py-16 max-w-6xl">
-        <span className="md:text-[27px] text-[21px] text-justify text-[--foreground]">
+        <span className="md:text-[27px] text-[21px] text-justify text-[var(--foreground)]">
           {CONTENT.aboutText}
         </span>
 
         <div className="flex md:gap-16 gap-8 mt-8">
           {CONTENT.aboutStats.map((item) => (
             <div className="flex flex-col" key={item.name}>
-              <span className="md:text-4xl text-[27px] w-1/3 text-[--foreground]">
+              <span className="md:text-4xl text-[27px] w-1/3 text-[var(--foreground)]">
                 {item.value.toLocaleString()}+
               </span>
-              <span className="text-base text-[--muted-foreground]">
+              <span className="text-base text-[var(--muted-foreground)]">
                 {item.name}
               </span>
             </div>
