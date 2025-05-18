@@ -43,7 +43,7 @@ export default function HomePage() {
           </p>
 
           <Link
-            href="https://www.commudle.com/communities/gdg-cloud-kolkata/events/cloud-community-days-kolkata-2025"
+            href="/apply"
             className="bg-[var(--black)] text-[var(--white)] dark:bg-[var(--white)] dark:text-[var(--black)] px-8 py-3 rounded-full font-medium text-lg inline-flex items-center"
           >
             <img
@@ -51,7 +51,7 @@ export default function HomePage() {
               className="mr-4 dark:invert block"
               alt={"gemini"}
             />
-            Register Now
+            Apply for Tickets
             <img
               src="/images/elements/gemini.svg"
               className="ml-4 dark:invert block"
@@ -73,13 +73,14 @@ export default function HomePage() {
       <SvgBand
         reverse={true}
         pauseOnHover={true}
-          className="bg-[var(--marquee-backgroundBlue)]"
+        className="bg-[var(--marquee-backgroundBlue)]"
       />
       <HeroSection2 />
       <SvgBand
         reverse={false}
         pauseOnHover={true}
-  className="bg-[var(--marquee-backgroundYellow)]"      />
+        className="bg-[var(--marquee-backgroundYellow)]"
+      />
       <div className="my-20">
         <CallForSpeakers />
       </div>

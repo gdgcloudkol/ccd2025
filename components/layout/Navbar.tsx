@@ -53,7 +53,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
             <Link
-              href="https://www.commudle.com/communities/gdg-cloud-kolkata/events/cloud-community-days-kolkata-2025"
+              href="/apply"
               className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
             >
               Apply for Tickets
