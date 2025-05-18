@@ -37,7 +37,7 @@ export default function Navbar() {
                 <div key={to} className="flex flex-col items-center">
                   <Link
                     href={to}
-                    className={`text-muted-foreground font-extralight hover:text-primary transition-colors px-2`}
+                    className={`text-muted-foreground font-light hover:text-primary dark:font-bold transition-colors px-2`}
                   >
                     {label}
                   </Link>
@@ -54,7 +54,7 @@ export default function Navbar() {
             <ThemeToggle />
             <Link
               href="https://www.commudle.com/communities/gdg-cloud-kolkata/events/cloud-community-days-kolkata-2025"
-              className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-light flex items-center whitespace-nowrap"
+              className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
             >
               Apply for Tickets
               <ArrowRight className="w-4 h-4 ml-2" />

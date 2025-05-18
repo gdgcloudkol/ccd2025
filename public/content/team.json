@@ -1,16 +1,16 @@
 {
   "title": "Meet the team",
-  "description": "The passion@e organizers and volunteers behind Cloud Community Day 2025.",
-  "leadId": [0, 5, 12, 16, 19, 23],
+  "description": "The passionate organizers and volunteers behind Cloud Community Day 2025.",
+  "leadId": [0, 5, 12, 16, 21, 28],
   "allPeople": [
     {
       "title": "Organizing Team",
-      "description": "The passion@e organizers and volunteers behind Cloud Community Day 2025.",
+      "description": "The passionate organizers and volunteers behind Cloud Community Day 2025.",
       "cardColor": "bg-google-red",
       "people": [
         {
           "id": 0,
-          "title": "Snehangshu Bh@tacharya",
+          "title": "Snehangshu Bhattacharya",
           "content": "Lead Engineer @ Callchimp",
           "linkedin": "https://www.linkedin.com/in/snehangshub/",
           "twitter": "https://twitter.com/snehangshu_",
@@ -35,7 +35,7 @@
         {
           "id": 3,
           "title": "Md Nasirul Haque",
-          "content": "IT Analyst @ TCS",
+          "content": "Technical Architect (IT Analyst) @ TCS",
           "linkedin": "https://www.linkedin.com/in/mdnasirulhaque/",
           "twitter": "https://twitter.com/mdnasirulhaque",
           "image": "https://www.github.com/mdnasirulhaque.png"
@@ -52,7 +52,7 @@
     },
     {
       "title": "Design Team",
-      "description": "The beautiful designs cre@ed are cre@ed by",
+      "description": "The beautiful designs created are created by",
       "cardColor": "bg-google-yellow",
       "people": [
         {
@@ -66,18 +66,18 @@
         {
           "id": 6,
           "title": "Annu Kumari",
-          "content": "Student @ N@ional Institute of Advanced Manufacturing Technology,",
+          "content": "Student @ National Institute of Advanced Manufacturing Technology",
           "linkedin": "https://www.linkedin.com/in/annu-kumari-540337237/",
           "twitter": "https://x.com/Annu66126617",
-          "image": "https://github.com/lurisan.png"
+          "image": "https://github.com/annuk123.png"
         },
         {
           "id": 7,
           "title": "Kriti Kumari",
           "content": "Student @ Meghnad Saha Institute of Technology",
-          "linkedin": "https://www.linkedin.com/in/kritifromkolk@a/",
+          "linkedin": "https://www.linkedin.com/in/kritifromkolkata/",
           "twitter": "https://x.com/kritiverse",
-          "image": "https://github.com/lurisan.png"
+          "image": "https://github.com/kritikodes.png"
         },
         {
           "id": 8,
@@ -101,7 +101,7 @@
           "content": "Student @ NMIET ",
           "linkedin": "https://www.linkedin.com/in/smruti-ranjan-nayak/",
           "twitter": "https://x.com/",
-          "image": "https://github.com/lurisan.png"
+          "image": "https://github.com/SM8UTI.png"
         },
         {
           "id": 11,
@@ -294,7 +294,7 @@
         {
           "id": 31,
           "title": "Rudramadhaba Mishra",
-          "content": "SDE @iServeU",
+          "content": "SDE @ iServeU",
           "linkedin": "https://www.linkedin.com/in/rudramadhaba/",
           "twitter": "https://x.com/rudramadhabami1",
           "image": "https://github.com/RUDRAMADHABA.png"
