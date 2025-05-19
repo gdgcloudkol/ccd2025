@@ -12,8 +12,6 @@ export function TeamSection({
   title,
   description,
   children,
-  cardColor,
-  roleTitle,
 }: TeamSectionProps) {
   return (
     <section className="mb-16">

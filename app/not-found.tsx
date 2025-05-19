@@ -26,9 +26,9 @@ export default function NotFound() {
             Something Exciting is Coming!
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-            While you're here, we're working on something amazing in the cloud!
-            This page is just taking a quick detour before we launch our next big
-            feature.
+            While you&apos;re here, we&apos;re working on something amazing in
+            the cloud! This page is just taking a quick detour before we launch
+            our next big feature.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
