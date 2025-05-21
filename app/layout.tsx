@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { LoadingContextProvider } from "./loading-provider";
+import Header from "@/components/layout/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
+        <LoadingContextProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -47,6 +50,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        </LoadingContextProvider>
       </body>
     </html>
   );
