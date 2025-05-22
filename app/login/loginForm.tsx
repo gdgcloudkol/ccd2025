@@ -31,7 +31,7 @@ export default function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    await signIn("ccd2024", {
+    await signIn("ccd2025", {
       username: values.username,
       password: values.password,
     });
@@ -42,6 +42,10 @@ export default function LoginForm() {
     ? searchParams.get("error") === "CredentialsSignin"
       ? "Invalid credentials"
       : searchParams.get("error")
+    : undefined;
+
+    const message = searchParams.get("message")
+      ? searchParams.get("message")
     : undefined;
 
   return (
@@ -61,7 +65,8 @@ export default function LoginForm() {
         onSubmit={onSubmit}
         isLoading={isLoading}
         submitText="Log in"
-        error={error}
+        error={error||""}
+        message={message||""}
         fields={[
           {
             name: "username",
@@ -89,7 +94,7 @@ export default function LoginForm() {
               Don't have an account?{" "}
               <LoadLink
                 href="/signup"
-                className="text-primary hover:text-primary/80 transition-colors font-medium"
+                className="text-primary hover:text-primary/80 transition-colors font-medium underline"
               >
                 Create an account
               </LoadLink>

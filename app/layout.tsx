@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { LoadingContextProvider } from "./loading-provider";
 import Header from "@/components/layout/Header";
+import { NextAuthProvider } from "./session-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const googleSans = localFont({
+  src: [
+    {
+      path: "../public/fonts/GoogleSans-Regular.ttf",
+      weight: "400",
+    },
+    {
+      path: "../public/fonts/GoogleSans-Medium.ttf",
+      weight: "600",
+    },
+    {
+      path: "../public/fonts/GoogleSans-Bold.ttf",
+      weight: "700",
+    },
+  ],
+  variable: "--font-google",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Cloud Community Day 2025",
   description:
@@ -39,17 +46,19 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${googleSans.className}  antialiased min-h-screen`}
       >
         <LoadingContextProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+          <NextAuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </NextAuthProvider>
         </LoadingContextProvider>
       </body>
     </html>

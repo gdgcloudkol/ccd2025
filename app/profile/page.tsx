@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import ProfileForm from "./profileForm";
+import Layout from "@/components/layout/Layout";
 
 export const metadata: Metadata = {
   title: "Profile - Cloud Community Day 2025",
@@ -14,13 +15,24 @@ const Page = async () => {
   if (!session?.access) redirect("/login");
   
   return (
-    <section className="min-h-[calc(100vh-4rem)] w-full bg-gradient-to-b from-background to-secondary/20">
+    <Layout>
+    <section className="min-h-[calc(100vh-4rem)] w-full bg-gradient-to-b from-background to-secondary/20 container mx-auto py-14">
       <div className="w-full max-w-4xl mx-auto py-10 px-4">
         <div className="bg-card text-card-foreground p-8 rounded-xl shadow-lg border border-border">
-          <ProfileForm user={session.user} />
+          <ProfileForm user={{
+            email:"gourav@devgg.in",
+            first_name:"Gourav",
+            last_name:"Ghosal",
+            pk:1,
+            profile:{
+              bio:"",
+              role:"member"
+            }
+          }} />
         </div>
       </div>
     </section>
+    </Layout>
   );
 };
 

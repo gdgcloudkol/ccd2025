@@ -72,7 +72,7 @@ export default function SignupForm() {
         return;
       }
 
-      window.location.href = "/login";
+      window.location.href = "/login?message=Please%20check%20your%20email";
     } catch (error) {
       form.setError("root", {
         message: error instanceof Error ? error.message : "Something went wrong",

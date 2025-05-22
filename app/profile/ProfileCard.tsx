@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { Button } from "../../components/ui/Button";
+import Button  from "../../components/ui/Button";
 import ProfileForm from "@/app/profile/profileForm";
 import { UserData } from "../../components/models/login/datatype";
 import {

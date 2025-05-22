@@ -13,20 +13,28 @@ declare module "next-auth" {
       first_name?: string;
       last_name?: string;
       profile?: {
-        active_role?: string;
-        callchimp_status?: string;
-        active_organization?: {
-          id?: number;
-          name?: string;
-          plan?: string;
-          features?: any;
-          sandbox_mode?: boolean;
-        };
-        default_organization?: {
-          id?: number;
-          name?: string;
-          plan?: string;
-        };
+        pronoun: string | null,
+        first_name: string,
+        last_name: string,
+        settings: Record<any, any>,
+        country_code: string,
+        phone: string,
+        college: string,
+        course: string,
+        graduation_year: number,
+        company: string,
+        role: string,
+
+        tsize: string,
+        profile_lock: boolean,
+        student: boolean,
+        bio: string;
+        socials: {
+
+          twitter?: string;
+          github?: string;
+          linkedin?: string;
+        }
       };
     };
   }
@@ -47,11 +55,7 @@ declare module "next-auth" {
           name: string;
           plan: string;
         };
-        default_organization: {
-          id: number;
-          name: string;
-          plan: string;
-        };
+
       };
     },
   }

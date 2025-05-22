@@ -35,8 +35,8 @@ export default function ProfileForm({ user }: ProfileFormProps) {
       firstName: user.profile?.first_name || "",
       lastName: user.profile?.last_name || "",
       email: user.email || "",
-      organization: user.profile?.active_organization?.name || "",
-      role: user.profile?.active_role || "",
+      organization:  "",
+      role: user.profile?.role || "",
       bio: user.profile?.bio || "",
       twitter: user.profile?.twitter || "",
       linkedin: user.profile?.linkedin || "",
@@ -70,9 +70,9 @@ export default function ProfileForm({ user }: ProfileFormProps) {
 
   const isProfileComplete = Boolean(
     user.profile?.first_name &&
-    user.profile?.last_name &&
-    user.profile?.active_role &&
-    user.profile?.active_organization?.name
+    user.profile?.last_name 
+    //&& user.profile?.active_role &&
+    // user.profile?.active_organization?.name
   );
 
   return (

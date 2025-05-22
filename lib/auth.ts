@@ -12,8 +12,8 @@ export const authOptions: NextAuthOptions = {
     },
     providers: [
         CredentialsProvider({
-            id: "ccd2024",
-            name: "ccd2024",
+            id: "ccd2025",
+            name: "ccd2025",
             credentials: {
                 username: {
                     label: "Username",
@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
 
                 const user = await authResponse.json()
 
-                if (user?.access_token) {
+                if (user?.access) {
                     return Promise.resolve(user)
                 } else {
                     return Promise.resolve(null)
@@ -62,8 +62,8 @@ export const authOptions: NextAuthOptions = {
 
             }
             if (user) {
-                token.access = user.access_token;
-                token.refresh = user.refresh_token;
+                token.access = user.access;
+                token.refresh = user.refresh;
                 token.expires_at = (new Date().getTime() + 24 * 60 * 60 * 1000) - (300 * 1000);
                 token.user = user.user;
                 return token;

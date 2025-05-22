@@ -19,9 +19,9 @@ export default function Logo({ className = "" }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center ${className}`}>
       <img
-        src="/images/GDGCK.svg"
+        src="/images/GDGCK.png"
         alt="GDG Cloud Kolkata"
-        className="h-6 lg:h-8 w-auto mr-2"
+        className="h-6 lg:h-12 min-h-6 w-auto mr-2"
         style={{
           filter:
             mounted && theme === "dark"

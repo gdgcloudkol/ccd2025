@@ -28,6 +28,7 @@ interface AuthFormProps {
   }[];
   footer?: ReactNode;
   error?: string;
+  message?: string
 }
 
 export default function AuthForm({
@@ -38,6 +39,7 @@ export default function AuthForm({
   fields,
   footer,
   error,
+  message
 }: AuthFormProps) {
   return (
     <Form {...form}>
@@ -76,13 +78,18 @@ export default function AuthForm({
           {submitText}
         </Button>
 
+
+        {footer && <div className="text-center text-sm">{footer}</div>}
+
         {error && (
           <p className="text-destructive text-center text-sm font-medium">
             {error}
           </p>
         )}
-
-        {footer && <div className="text-center text-sm">{footer}</div>}
+        {
+          message &&
+          <p className="text-google-green text-sm font-medium text-center">{decodeURI(message || "Please check email")}</p>
+        }
       </form>
     </Form>
   );
