@@ -18,7 +18,7 @@ interface AuthFormProps {
   form: UseFormReturn<any>;
   onSubmit: (values: any) => Promise<void>;
   isLoading: boolean;
-  submitText: string;
+  submitText: ReactNode;
   fields: {
     name: string;
     label: string;
@@ -28,7 +28,8 @@ interface AuthFormProps {
   }[];
   footer?: ReactNode;
   error?: string;
-  message?: string
+  message?: string;
+  aboveButton?: ReactNode;
 }
 
 export default function AuthForm({
@@ -39,7 +40,8 @@ export default function AuthForm({
   fields,
   footer,
   error,
-  message
+  message,
+  aboveButton,
 }: AuthFormProps) {
   return (
     <Form {...form}>
@@ -69,15 +71,16 @@ export default function AuthForm({
           />
         ))}
 
+        {aboveButton && aboveButton}
+
         <Button
           type="submit"
-          className="w-full text-center bg-primary hover:bg-primary/90 text-primary-foreground h-11 text-base font-medium transition-colors"
+          className="w-full text-center bg-primary hover:bg-primary/90 text-primary-foreground h-11 text-base font-medium transition-colors rounded-full"
           disabled={isLoading}
         >
-          {isLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+          {isLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin " />}
           {submitText}
         </Button>
-
 
         {footer && <div className="text-center text-sm">{footer}</div>}
 
@@ -86,11 +89,12 @@ export default function AuthForm({
             {error}
           </p>
         )}
-        {
-          message &&
-          <p className="text-google-green text-sm font-medium text-center">{decodeURI(message || "Please check email")}</p>
-        }
+        {message && (
+          <p className="text-google-green text-sm font-medium text-center">
+            {decodeURI(message || "Please check email")}
+          </p>
+        )}
       </form>
     </Form>
   );
-} 
+}
