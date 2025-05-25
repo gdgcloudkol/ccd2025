@@ -2,8 +2,13 @@ import { VERITY_EMAIL_DJANGO_URL } from '@/lib/constants/be';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest, { params }: { params: { token: string } }) {
-    const { token } = params;
+export async function GET(req: NextRequest) {
+    const token = req.nextUrl.pathname.split('/').pop(); // Or use req.nextUrl.searchParams if using query string
+
+    if (!token) {
+        return NextResponse.json({ error: "Token missing" }, { status: 400 });
+    }
+
 
     const response = await fetch(VERITY_EMAIL_DJANGO_URL + token + "/", {
         method: "GET",

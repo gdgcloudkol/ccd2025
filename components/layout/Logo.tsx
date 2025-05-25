@@ -21,7 +21,7 @@ export default function Logo({ className = "" }: LogoProps) {
       <img
         src="/images/GDGCK.png"
         alt="GDG Cloud Kolkata"
-        className="h-6 lg:h-12 min-h-6 w-auto mr-2"
+        className="h-10 md:h-8 lg:h-12 min-h-6 w-auto mr-2"
         style={{
           filter:
             mounted && theme === "dark"

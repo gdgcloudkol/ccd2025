@@ -18,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   className = "",
   type = "button",
+  
 }) => {
   const baseClasses =
     "inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full";

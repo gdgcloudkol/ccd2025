@@ -38,9 +38,9 @@ export default function ProfileForm({ user }: ProfileFormProps) {
       organization:  "",
       role: user.profile?.role || "",
       bio: user.profile?.bio || "",
-      twitter: user.profile?.twitter || "",
-      linkedin: user.profile?.linkedin || "",
-      github: user.profile?.github || "",
+      twitter: user.profile?.socials?.twitter || "",
+      linkedin: user.profile?.socials?.linkedin || "",
+      github: user.profile?.socials?.github || "",
     },
   });
 

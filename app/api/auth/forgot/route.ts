@@ -1,9 +1,9 @@
-import { FORGOT_PASSWORD_DJANGO_URL } from '@/lib/constants/be';
+import { FORGOT_PASSWORD_DJANGO_URL, RESET_PASSWORD_MAIL_DJANGO_URL } from '@/lib/constants/be';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
-  const response = await fetch(FORGOT_PASSWORD_DJANGO_URL, {
+  const response = await fetch(RESET_PASSWORD_MAIL_DJANGO_URL, {
     method: "POST",
     cache: 'no-store',
     headers: {
