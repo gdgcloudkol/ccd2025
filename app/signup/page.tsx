@@ -14,9 +14,13 @@ export const metadata: Metadata = {
 const Page = async () => {
   const session = await getServerSession(authOptions);
   if (session && session?.access) redirect("/profile");
-  
+
   return (
-    <AuthLayout>
+    <AuthLayout
+      headerContent={
+        <span className="text-white text-lg font-semibold">Create</span>
+      }
+    >
       <SignupForm />
     </AuthLayout>
   );

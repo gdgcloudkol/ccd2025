@@ -58,9 +58,7 @@ export default function LoginForm() {
         onSubmit={onSubmit}
         isLoading={isLoading}
         submitText={
-          <span className="flex items-center justify-center gap-2">
-            &#10022; Sign in &#10022;
-          </span>
+            "Sign in"
         }
         error={error || ""}
         message={message || ""}
@@ -81,7 +79,7 @@ export default function LoginForm() {
           <div className="flex justify-end mb-2">
             <LoadLink
               href="/forgot"
-              className="text-blue-700 underline hover:text-primary/80 transition-colors text-xs font-medium"
+              className="text-blue-700 underline hover:text-primary/80 transition-colors text-sm font-medium"
             >
               Forgot Password?
             </LoadLink>
