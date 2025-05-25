@@ -50,19 +50,8 @@ export default function LoginForm() {
 
   return (
     <div className="space-y-8">
-      <button
-        type="button"
-        className="w-full flex items-center justify-center gap-2 py-3 rounded-full border-input bg-[#F8F5F2] text-gray-700 font-medium hover:bg-gray-50 transition mb-4"
-        onClick={() => signIn("google")}
-        disabled={isLoading}
-      >
-        <img src="/assets/google.svg" alt="Google" className="h-5 w-5" />
-        Sign in with Google
-      </button>
+      
       <div className="flex items-center my-2">
-        <div className="flex-grow h-px bg-border" />
-        <span className="mx-4 text-muted-foreground text-sm">OR</span>
-        <div className="flex-grow h-px bg-border" />
       </div>
       <AuthForm
         form={form}
