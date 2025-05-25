@@ -20,7 +20,7 @@ const formSchema = z.object({
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,62 +44,59 @@ export default function LoginForm() {
       : searchParams.get("error")
     : undefined;
 
-    const message = searchParams.get("message")
-      ? searchParams.get("message")
+  const message = searchParams.get("message")
+    ? searchParams.get("message")
     : undefined;
 
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-center md:text-left bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-          {AuthContent.loginFormTitle}
-        </h1>
-        <p
-          className="text-center md:text-left text-muted-foreground"
-          dangerouslySetInnerHTML={{ __html: AuthContent.loginFormDescription }}
-        />
+      
+      <div className="flex items-center my-2">
       </div>
-
       <AuthForm
         form={form}
         onSubmit={onSubmit}
         isLoading={isLoading}
-        submitText="Log in"
-        error={error||""}
-        message={message||""}
+        submitText={
+          <span className="flex items-center justify-center gap-2">
+            &#10022; Sign in &#10022;
+          </span>
+        }
+        error={error || ""}
+        message={message || ""}
         fields={[
           {
             name: "username",
             label: "Username",
-            placeholder: "john",
+            placeholder: "gdgcloudkol",
           },
           {
             name: "password",
             label: "Password",
             type: "password",
-            placeholder: "********",
+            placeholder: "**********",
           },
         ]}
+        aboveButton={
+          <div className="flex justify-end mb-2">
+            <LoadLink
+              href="/forgot"
+              className="text-blue-700 underline hover:text-primary/80 transition-colors text-xs font-medium"
+            >
+              Forgot Password?
+            </LoadLink>
+          </div>
+        }
         footer={
-          <>
-            <div className="flex items-center justify-between mb-4">
-              <LoadLink
-                href="/forgot"
-                className="text-primary hover:text-primary/80 transition-colors"
-              >
-                Forgot Password?
-              </LoadLink>
-            </div>
-            <p>
-              Don't have an account?{" "}
-              <LoadLink
-                href="/signup"
-                className="text-primary hover:text-primary/80 transition-colors font-medium underline"
-              >
-                Create an account
-              </LoadLink>
-            </p>
-          </>
+          <p className="text-xs text-center">
+            Do not have an account?{" "}
+            <LoadLink
+              href="/signup"
+              className="text-blue-700 hover:text-primary/80 transition-colors font-medium underline"
+            >
+              Create an account
+            </LoadLink>
+          </p>
         }
       />
     </div>
