@@ -25,10 +25,9 @@ const user = await response.json();
 
   return (
     <Layout>
-    <section className="min-h-[calc(100vh-4rem)] w-full  container mx-auto py-20 relative">
+    <section className="min-h-[calc(100vh-4rem)] w-full container mx-auto py-20 relative">
       <Suspense fallback={<>Loading profile...</>}>
-
-    <ProfileCard user={user} session={session}/>
+        <ProfileCard user={user} session={session}/>
       </Suspense>
     </section>
     </Layout>

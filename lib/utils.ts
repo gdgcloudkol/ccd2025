@@ -17,8 +17,8 @@ export const debounce = (callback: any, delay: number) => {
 };
 
 export function convertTimeFormat(timeString: string) {
-  let currentTime = new Date(timeString);
-  let convertedtimeString = currentTime.toLocaleTimeString('en-IN', { timeStyle: "short", hour12: true });
+  const currentTime = new Date(timeString);
+  const convertedtimeString = currentTime.toLocaleTimeString('en-IN', { timeStyle: "short", hour12: true });
   return convertedtimeString;
 }
 

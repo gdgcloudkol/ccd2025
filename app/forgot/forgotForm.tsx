@@ -73,7 +73,7 @@ if(isSuccess)
             name: "email",
             label: "Email",
             type: "email",
-            placeholder: "john@example.com",
+            placeholder: "hello@gdgcloudkol.org",
           },
         ]}
         footer={

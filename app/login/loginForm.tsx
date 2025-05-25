@@ -71,7 +71,7 @@ export default function LoginForm() {
           {
             name: "username",
             label: "Username",
-            placeholder: "john",
+            placeholder: "gdglcoudkol",
           },
           {
             name: "password",

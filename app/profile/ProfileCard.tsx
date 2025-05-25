@@ -165,14 +165,13 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
 
 
   return (
-    <div className="min-h-screen p-2 sm:p-4">
+    <div className="min-h-screen p-2 sm:p-4 w-full mx-auto">
       <CardContainer
         headerTitle={
           <span className="text-white font-medium text-lg">My Profile</span>
         }
-        maxWidth="max-w-2xl"
+        maxWidth="max-w-5xl"
       >
-        {/* <pre>{JSON.stringify(user, null,2)}</pre> */}
         <div className="p-2 sm:p-4">
           {/* Profile header */}
           <div className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
@@ -277,7 +276,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                         <FormLabel className="text-xs sm:text-sm text-muted-foreground">First Name</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="John"
+                            placeholder="gdgcloudkol"
                             className="border-input focus:border-[#076eff] text-sm"
                             {...field}
                           />
@@ -520,7 +519,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 text-sm sm:text-base flex items-center gap-2"
+                    className="bg-primary hover:bg-primary/90 text-white dark:text-black px-6 sm:px-8 text-sm sm:text-base flex items-center gap-2"
                     onClick={() => {
                       console.log({
                         college: form.getValues("college"),
@@ -545,13 +544,13 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     <img
                       src="/images/cfs/gemini.svg"
                       alt=""
-                      className="h-4 w-4"
+                      className="size-4 dark:invert"
                     />
                     {isSubmitting ? "Saving..." : "Save"}
                     <img
                       src="/images/cfs/gemini.svg"
                       alt=""
-                      className="h-4 w-4"
+                      className="size-4 dark:invert"
                     />
                   </Button>
                 </div>
