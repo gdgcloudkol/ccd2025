@@ -15,6 +15,7 @@ const formSchema = z.object({
 
 export default function ForgotForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess,setIsSuccess]= useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -27,7 +28,7 @@ export default function ForgotForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/auth/forgot-password", {
+      const response = await fetch("/api/auth/forgot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -38,19 +39,21 @@ export default function ForgotForm() {
         throw new Error(error.message || "Something went wrong");
       }
 
-      router.push("/verify-email");
+      setIsSuccess(true)
     } catch (error) {
       form.setError("root", {
         message: error instanceof Error ? error.message : "Something went wrong",
       });
+      setIsSuccess(false)
     } finally {
       setIsLoading(false);
     }
   }
-
+if(isSuccess)
+  return <h3>{AuthContent.forgotSuccessMessage}</h3>
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
+      <div className="space-y-2 inline-block md:hidden">
         <h1 className="text-3xl font-bold text-center md:text-left bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
           {AuthContent.resetFormTitle}
         </h1>
@@ -78,7 +81,7 @@ export default function ForgotForm() {
             Remember your password?{" "}
             <LoadLink
               href="/login"
-              className="text-primary hover:text-primary/80 transition-colors font-medium"
+              className="text-google-blue hover:text-google-blue/80 transition-colors font-medium"
             >
               Log in
             </LoadLink>

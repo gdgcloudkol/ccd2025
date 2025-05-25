@@ -52,8 +52,8 @@ export default function AuthForm({
             control={form.control}
             name={field.name}
             render={({ field: formField }) => (
-              <FormItem>
-                <FormLabel className="text-base">{field.label}</FormLabel>
+              <FormItem className="space-y-2">
+                <FormLabel className="text-sm text-secondary-foreground">{field.label}</FormLabel>
                 <FormControl>
                   <Input
                     type={field.type || "text"}
@@ -73,14 +73,16 @@ export default function AuthForm({
 
         {aboveButton && aboveButton}
 
+     
         <Button
           type="submit"
-          className="w-full text-center bg-primary hover:bg-primary/90 text-primary-foreground h-11 text-base font-medium transition-colors rounded-full"
+          className="w-full text-center bg-primary hover:bg-primary/90 text-primary-foreground h-11 text-base font-medium transition-colors"
           disabled={isLoading}
         >
           {isLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin " />}
           &#10022; {submitText} &#10022; 
         </Button>
+    
 
         {footer && <div className="text-center text-sm">{footer}</div>}
 
