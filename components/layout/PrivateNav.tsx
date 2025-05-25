@@ -27,7 +27,7 @@ export default function PrivateNav({
   user: UserData | undefined;
 }) {
   return <>
-    <div className="inline-block lg:hidden w-full">
+    <div className=" md:hidden w-full">
       <LoadLink href={'/profile'} className="flex items-center justify-between w-full">
         Profile
         <Avatar className='h-10 w-10'>
@@ -49,7 +49,7 @@ export default function PrivateNav({
         </Avatar>
       </LoadLink>
     </div>
-    <div className="hidden lg:inline-block">
+    <div className="hidden md:inline-block">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar className='h-10 w-10'>
@@ -77,11 +77,11 @@ export default function PrivateNav({
               <User className='mr-2 h-4 w-4' /> Profile
             </LoadLink>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
             <LoadLink href={'/apply'} className="flex items-center justify-between">
               <Ticket className='mr-2 h-4 w-4' /> Apply for Ticket
             </LoadLink>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => signOut()}>
             <LogOut className='mr-2 h-4 w-4' />

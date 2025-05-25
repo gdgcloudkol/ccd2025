@@ -9,7 +9,7 @@ const AboutFrame = () => {
           {CONTENT.aboutText}
         </span>
 
-        <div className="flex md:gap-16 gap-8 mt-8">
+        <div className="flex md:gap-16 gap-8 mt-8 flex-wrap">
           {CONTENT.aboutStats.map((item) => (
             <div className="flex flex-col" key={item.name}>
               <span className="md:text-4xl text-[27px] w-1/3 text-[var(--foreground)]">
