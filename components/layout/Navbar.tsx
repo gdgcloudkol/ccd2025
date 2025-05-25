@@ -5,51 +5,53 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "../ui/ThemeToggle";
 import Logo from "./Logo";
-import { ArrowRight, User } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { ArrowRight, LogOut, User } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import PrivateNav from "./PrivateNav";
 import { UserData } from "@/types/login";
 import LoadLink from "../blocks/LoadLink";
 import FeatureRuleContent from "@/public/content/feature.rule.json";
-const ApplyLink=()=>{
-  return  <Link
-  href="/apply"
-  className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
->
-  Apply for Tickets
-  <ArrowRight className="w-4 h-4 ml-2" />
-</Link>
+import Button from "../ui/Button";
+const ApplyLink = () => {
+  return <LoadLink
+    href="/apply"
+    className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
+  >
+    Apply for Tickets
+    <ArrowRight className="w-4 h-4 ml-2" />
+  </LoadLink>
 }
-const UserSection = ()=>{
+const UserSection = () => {
   const [mounted, setMounted] = useState(false);
   const session = useSession()
 
   useEffect(() => {
     setMounted(true);
   }, []);
-  if(!mounted)
-    return <ApplyLink/>
+  if (!mounted)
+    return <ApplyLink />
 
-  return session?.data?.user ? <PrivateNav user={session.data.user as unknown as UserData}/> : <LoadLink
-  href="/login"
-  className="bg-primary text-secondary p-3 px-6 rounded-full font-light flex items-center"
->
-  Login
-  <span className="ml-2 bg-secondary text-primary rounded-full h-6 w-6 flex items-center justify-center text-xs">
-    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
-  </span>
-</LoadLink>
+  return session?.data?.user ? <PrivateNav user={session.data.user as unknown as UserData} /> : <LoadLink
+    href="/login"
+    className="bg-primary text-secondary p-3 px-6 rounded-full font-light flex items-center justify-between"
+  >
+    Login
+    <span className="ml-2 bg-secondary text-primary rounded-full h-6 w-6 flex items-center justify-center text-xs">
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10 17 15 12 10 7" /><line x1="15" x2="3" y1="12" y2="12" /></svg>
+    </span>
+  </LoadLink>
 }
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const currentPath = pathname;
+  const session = useSession()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
- 
+
   return (
     <nav className="bg-background p-3 fixed top-4 left-0 right-0 z-[999] w-11/12 xl:w-10/12 mx-auto rounded-full border border-border">
       <div className="container mx-auto px-4 md:px-6">
@@ -86,7 +88,7 @@ export default function Navbar() {
           {/* Desktop Login Button and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
-            {FeatureRuleContent.navbar.navShowProfile ?<UserSection/>:<Link
+            {FeatureRuleContent.navbar.navShowProfile ? <UserSection /> : <Link
               href="/apply"
               className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
             >
@@ -139,56 +141,71 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden absolute left-0 right-0 mt-2 bg-background rounded-2xl shadow-lg border border-border transform transition-all duration-300 ease-in-out ${
-            isMenuOpen
+          className={`md:hidden absolute left-0 right-0 mt-2 bg-background rounded-2xl shadow-lg border border-border transform transition-all duration-300 ease-in-out ${isMenuOpen
               ? "opacity-100 translate-y-0 visible"
               : "opacity-0 -translate-y-2 invisible"
-          }`}
+            }`}
         >
           <div className="p-6 space-y-6">
             <div className="flex flex-col space-y-4">
-              <Link
+              <LoadLink
                 href="/"
                 className="text-foreground font-light hover:text-primary transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
-              </Link>
-              <Link
+              </LoadLink>
+              <LoadLink
                 href="/speakers"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Speakers
-              </Link>
+              </LoadLink>
 
-              <Link
+              <LoadLink
                 href="/schedule"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Schedule
-              </Link>
-              <Link
+              </LoadLink>
+              <LoadLink
                 href="/team"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Team
-              </Link>
-              <Link
-                href="/login"
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-light inline-block text-center mt-4 hover:opacity-90 transition-opacity"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Login
-              </Link>
+              </LoadLink>
+              {FeatureRuleContent.navbar.navShowProfile ? (
+                <div onClick={() => setIsMenuOpen(false)}>
+                  <UserSection />
+                </div>
+              ) : (
+                <LoadLink
+                  href="/apply"
+                  className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold  text-center mt-4 hover:opacity-90 transition-opacity flex items-center justify-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Apply for Tickets
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </LoadLink>
+              )}
               <div className="border-t border-border mt-4 pt-4">
                 <div className="flex items-center justify-between text-foreground py-2">
                   <span className="font-light">Theme</span>
                   <ThemeToggle />
                 </div>
+                {
+                  session && session.data?.user && 
+                  <Button variant="primary" className="!px-0 flex items-center justify-between text-foreground py-2 w-full z-[999]" onClick={signOut}>
+                    <span className="font-light">Logout</span>
+                    <LogOut className="size-5 ml-auto -translate-x-2" />
+                  </Button>
+                }
+
               </div>
+
             </div>
           </div>
         </div>
