@@ -3,9 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { LoadingContextProvider } from "./loading-provider";
-import Header from "@/components/layout/Header";
-import { NextAuthProvider } from "./session-provider";
 
+import { NextAuthProvider } from "./session-provider";
+import { Toaster } from "@/components/ui/sonner"
 const googleSans = localFont({
   src: [
     {
@@ -57,6 +57,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               {children}
+              <Toaster />
             </ThemeProvider>
           </NextAuthProvider>
         </LoadingContextProvider>

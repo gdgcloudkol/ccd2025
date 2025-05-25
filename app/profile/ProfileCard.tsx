@@ -14,7 +14,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-
+import { toast } from "sonner"
 import {
   Form,
   FormControl,
@@ -26,6 +26,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { UserProfile } from "@/types/login";
 import { SubmitHandler } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
 type FormValues = {
   firstName: string;
@@ -49,7 +50,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
   const [activeTab, setActiveTab] = useState("My Profile");
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-
+  const {update}= useSession()
   const formSchema = z.object({
     firstName: z.string().min(1, { message: "First name is required" }),
     lastName: z.string().min(1, { message: "Last name is required" }),
@@ -98,7 +99,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
       firstName: user?.first_name || "",
       lastName: user?.last_name || "",
       email: session.user.email || "",
-      company: (user?.student ? user?.college : user?.company) || "",
+      company: user.company || "",
       role: user?.role || "",
       pronoun: user?.pronoun || "",
       phone: user?.phone || "",
@@ -118,18 +119,40 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
 
     setIsSubmitting(true);
+
+    const data=
+      {
+        firstName:values.firstName || "",
+        lastName:values.lastName || "",
+        email: values.email || "",
+        company:values.company,
+        role: values.role|| "",
+        pronoun: values.pronoun || "",
+        phone: values.phone || "",
+        college: values.college || "",
+        course: values.course || "",
+        graduation_year: values.graduation_year || undefined,
+        student: values.student ?? false,
+        socials:{
+          twitter: values.twitter || "",
+          linkedin: values.linkedin || "",
+          github: values.github || "",
+        }
+    }
+
     try {
       const response = await fetch("/api/users", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || "Something went wrong");
       }
-
+      toast("Profile updated successfully!")
+      await update()
       router.refresh();
     } catch (error) {
       form.setError("root", {
@@ -198,8 +221,17 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                   checked={form.watch("student")}
                   onCheckedChange={(checked: boolean) => {
                     form.setValue("student", checked);
-                    // Reset company field when switching
-                    form.setValue("company", "");
+                    // Reset all relevant fields when switching modes
+                    if (checked) {
+                      // Switching to student mode
+                      form.setValue("company", "");
+                      form.setValue("role", "");
+                    } else {
+                      // Switching to professional mode
+                      form.setValue("college", "");
+                      form.setValue("course", "");
+                      form.setValue("graduation_year", undefined);
+                    }
                   }}
                 />
                 <span className="text-sm text-muted-foreground">
@@ -290,10 +322,10 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                             <SelectGroup>
                               {[
                                 { value: "NA", display_name: "Prefer not to say" },
-                                { value: "she", display_name: "she/her" },
-                                { value: "he", display_name: "he/him" },
-                                { value: "they", display_name: "they/them" },
-                                { value: "other", display_name: "other" }
+                                { value: "she", display_name: "She/Her" },
+                                { value: "he", display_name: "He/Him" },
+                                { value: "they", display_name: "They/Them" },
+                                { value: "other", display_name: "Other" }
                               ].map((e) => (
                                 <SelectItem key={e.value} value={e.value}>
                                   {e.display_name}
@@ -306,28 +338,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">Email Address</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="your.email@example.com"
-                            className="border-input focus:border-[#076eff] text-sm"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs text-red-500" />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <FormField
+                 <FormField
                     control={form.control}
                     name="phone"
                     render={({ field }) => (
@@ -344,9 +355,8 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       </FormItem>
                     )}
                   />
-
-
                 </div>
+
 
                 {form.watch("student") ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
