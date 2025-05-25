@@ -2,7 +2,7 @@
 
 import { CreditCard, LogOut, PlusCircle, Settings2, Ticket, User } from "lucide-react";
 import { signOut } from "next-auth/react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import Button from "@/components/ui/Button";
 import {
   DropdownMenu,
