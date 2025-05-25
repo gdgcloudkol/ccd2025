@@ -45,7 +45,7 @@ export default function AuthLayout({
 
   return (
     <Layout>
-      <section className="min-h-[calc(100vh-4rem)] w-full container mx-auto px-4 md:px-12 py-14 relative z-10 pt-[10%]">
+      <section className="min-h-[calc(100vh-4rem)] w-full container mx-auto px-4 md:px-12 py-14 relative z-10 pt-[10%] mt-10 lg:mt-0">
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 py-10 px-4 ">
           {showBanner && (
             <div className="hidden md:flex banner flex-col col-span-2 text-card-foreground p-8 rounded-xl space-y-6 justify-start">
@@ -90,7 +90,7 @@ export default function AuthLayout({
                   ))}
                 </div>
               </div>
-              <div className="bg-white dark:bg-black rounded-3xl p-8">
+              <div className="bg-white dark:bg-black rounded-3xl p-8 ">
                 {children}
               </div>
             </div>

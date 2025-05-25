@@ -101,6 +101,18 @@ export default function SignupForm() {
           </p>
         </div>
       ) : (
+        <>
+        <div className="space-y-2 inline-block md:hidden">
+        <h1 className="text-3xl font-bold text-center md:text-left bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+          {AuthContent.signupFormTitle}
+        </h1>
+        <p
+          className="text-center md:text-left text-muted-foreground"
+          dangerouslySetInnerHTML={{ __html: AuthContent.signupFormDescription }}
+        />
+      </div>
+
+
         <AuthForm
           form={form}
           onSubmit={onSubmit}
@@ -145,6 +157,7 @@ export default function SignupForm() {
             </p>
           }
         />
+        </>
       )}
     </div>
   );

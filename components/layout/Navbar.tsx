@@ -34,7 +34,7 @@ const UserSection = ()=>{
   href="/login"
   className="bg-primary text-secondary p-3 px-6 rounded-full font-light flex items-center"
 >
-  Login Now
+  Login
   <span className="ml-2 bg-secondary text-primary rounded-full h-6 w-6 flex items-center justify-center text-xs">
     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
   </span>
@@ -181,7 +181,7 @@ export default function Navbar() {
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-light inline-block text-center mt-4 hover:opacity-90 transition-opacity"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Login Now
+                Login
               </Link>
               <div className="border-t border-border mt-4 pt-4">
                 <div className="flex items-center justify-between text-foreground py-2">
