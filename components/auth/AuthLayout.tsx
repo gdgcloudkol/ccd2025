@@ -8,6 +8,7 @@ interface AuthLayoutProps {
   bannerTitle?: string;
   bannerDescription?: string;
   bannerImg?: string;
+  headerContent?: ReactNode;
 }
 
 export default function AuthLayout({
@@ -16,6 +17,7 @@ export default function AuthLayout({
   bannerTitle = AuthContent.bannerTitle,
   bannerDescription = AuthContent.bannerDescription,
   bannerImg = AuthContent.bannerImg,
+  headerContent = <></>,
 }: AuthLayoutProps) {
   return (
     <Layout>
@@ -42,7 +44,9 @@ export default function AuthLayout({
           >
             <div className="overflow-hidden border border-[var(--color-border)] bg-cfs-gradient rounded-3xl p-[1px] max-w-xl">
               <div className="rounded-t-3xl w-full h-12 bg-gradient-to-r from-[#ea4335] via-[#4285f4] to-[#34a853] flex items-center px-6 relative">
-                <span className="text-white text-lg font-semibold">Login</span>
+                <span className="text-white text-lg font-semibold">
+                  {headerContent}
+                </span>
                 <div className="absolute right-6 flex items-center space-x-1">
                   {[
                     { src: "/images/elements/star.svg", alt: "star" },

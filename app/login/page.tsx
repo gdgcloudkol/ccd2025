@@ -16,7 +16,7 @@ const Page = async () => {
   if (session && session?.access) redirect("/profile");
   
   return (
-    <AuthLayout>
+    <AuthLayout headerContent={<span className="text-white text-lg font-semibold">Login</span>}>
       <LoginForm />
     </AuthLayout>
   );

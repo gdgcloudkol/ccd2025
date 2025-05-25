@@ -73,7 +73,7 @@ export default function AuthForm({
           disabled={isLoading}
         >
           {isLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-          {submitText}
+          &#10022; {submitText} &#10022;
         </Button>
 
         {error && (

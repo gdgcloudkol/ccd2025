@@ -50,18 +50,12 @@ export default function LoginForm() {
 
   return (
     <div className="space-y-8">
-      
-      <div className="flex items-center my-2">
-      </div>
+      <div className="flex items-center my-2"></div>
       <AuthForm
         form={form}
         onSubmit={onSubmit}
         isLoading={isLoading}
-        submitText={
-          <span className="flex items-center justify-center gap-2">
-            &#10022; Sign in &#10022;
-          </span>
-        }
+        submitText={"Sign in"}
         error={error || ""}
         message={message || ""}
         fields={[
@@ -81,7 +75,7 @@ export default function LoginForm() {
           <div className="flex justify-end mb-2">
             <LoadLink
               href="/forgot"
-              className="text-blue-700 underline hover:text-primary/80 transition-colors text-xs font-medium"
+              className="text-blue-700 underline hover:text-primary/80 transition-colors text-sm font-medium"
             >
               Forgot Password?
             </LoadLink>
