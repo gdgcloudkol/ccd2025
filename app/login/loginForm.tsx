@@ -50,16 +50,12 @@ export default function LoginForm() {
 
   return (
     <div className="space-y-8">
-      
-      <div className="flex items-center my-2">
-      </div>
+      <div className="flex items-center my-2"></div>
       <AuthForm
         form={form}
         onSubmit={onSubmit}
         isLoading={isLoading}
-        submitText={
-            "Sign in"
-        }
+        submitText={"Sign in"}
         error={error || ""}
         message={message || ""}
         fields={[

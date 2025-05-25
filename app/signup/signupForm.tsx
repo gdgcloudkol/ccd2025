@@ -25,6 +25,7 @@ const formSchema = z
 
 export default function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -72,7 +73,7 @@ export default function SignupForm() {
         return;
       }
 
-      window.location.href = "/login?message=Please%20check%20your%20email";
+      setIsSuccess(true);
     } catch (error) {
       form.setError("root", {
         message:
@@ -85,49 +86,61 @@ export default function SignupForm() {
 
   return (
     <div className="space-y-8">
-      <AuthForm
-        form={form}
-        onSubmit={onSubmit}
-        isLoading={isLoading}
-        submitText="Sign up"
-        error={form.formState.errors.root?.message}
-        fields={[
-          {
-            name: "username",
-            label: "Username",
-            placeholder: "gdgcloudkol",
-          },
-          {
-            name: "email",
-            label: "Email",
-            type: "email",
-            placeholder: "gdgcloudkol@gmail.com",
-          },
-          {
-            name: "password",
-            label: "Password",
-            type: "password",
-            placeholder: "********",
-          },
-          {
-            name: "confirmPassword",
-            label: "Confirm Password",
-            type: "password",
-            placeholder: "********",
-          },
-        ]}
-        footer={
-          <p>
-            Already have an account?{" "}
-            <LoadLink
-              href="/login"
-              className="text-blue-700 underline hover:text-primary/80 transition-colors text-sm font-medium"
-            >
-              Login
-            </LoadLink>
+      {isSuccess ? (
+        <div className="text-left space-y-4">
+          <h2 className="text-2xl font-semibold text-primary">
+            Activate your account
+          </h2>
+          <p className="text-muted-foreground">
+            We've sent you an email with a link to activate your account. Please
+            check your inbox and follow the instructions.
           </p>
-        }
-      />
+        </div>
+      ) : (
+        <AuthForm
+          form={form}
+          onSubmit={onSubmit}
+          isLoading={isLoading}
+          submitText="Sign up"
+          error={form.formState.errors.root?.message}
+          fields={[
+            {
+              name: "username",
+              label: "Username",
+              placeholder: "gdgcloudkol",
+            },
+            {
+              name: "email",
+              label: "Email",
+              type: "email",
+              placeholder: "gdgcloudkol@gmail.com",
+            },
+            {
+              name: "password",
+              label: "Password",
+              type: "password",
+              placeholder: "********",
+            },
+            {
+              name: "confirmPassword",
+              label: "Confirm Password",
+              type: "password",
+              placeholder: "********",
+            },
+          ]}
+          footer={
+            <p>
+              Already have an account?{" "}
+              <LoadLink
+                href="/login"
+                className="text-blue-700 underline hover:text-primary/80 transition-colors text-sm font-medium"
+              >
+                Login
+              </LoadLink>
+            </p>
+          }
+        />
+      )}
     </div>
   );
 }
