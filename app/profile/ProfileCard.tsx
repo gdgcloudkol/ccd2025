@@ -1,310 +1,224 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import Button  from "../../components/ui/Button";
-import ProfileForm from "@/app/profile/profileForm";
-import { UserData } from "../../components/models/login/datatype";
-import {
-  cn,
-  extractGithubUsername,
-  getPronoun,
-  getPronounLabel,
-  maskEmail,
-  maskPhoneNumber,
-} from "@/lib/utils";
-import { DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME } from "@/lib/constants/generic";
-import { useSession } from "next-auth/react";
-import { ArrowRight, Edit } from "lucide-react";
-import LoadLink from "@/components/blocks/LoadLink";
 
-import {
-  Dialog,
-  DialogHeader,
-  DialogContent,
-  DialogTrigger,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import Button from "@/components/ui/Button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/Textarea";
+import CardContainer from "@/components/ui/CardContainer";
+import Points from "./Points";
+import LeaderBoard from "./LeaderBoard";
 
-const NoShowModal = () => {
-  return (
-    <Dialog>
-      <DialogTrigger className='text-google-blue text-base'>
-        (What this means?)
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle> What does a no-show mean?</DialogTitle>
-        </DialogHeader>
-        <p>
-          A no-show refers to a situation where an attendee{" "}
-          <strong>
-            does not show up to the event even with an approved ticket.
-          </strong>
-        </p>
-        <p>
-          An attendee gets 3 chances to attend extended events.{" "}
-          <strong>Each no-show costs 1 attempt. </strong> E.g. if you have 3
-          attempts left, and an approved ticket, not showing up would decrease
-          your attempts to 1. (1 subtracted for approved status, another for no
-          show)
-        </p>
-        <DialogFooter>
-          <DialogTrigger>Close</DialogTrigger>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  );
-};
-
-const ProfileCard = ({ user }: { user?: UserData }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState<UserData | undefined>(user);
-  const approved_events_count = useMemo(
-    () => 3 - Number(user?.profile?.attempts ?? 0),
-    [user]
-  );
-  const { update } = useSession();
-  useEffect(() => {
-    setUserData(() => user);
-  }, [user]);
-  useEffect(() => {
-    const updateProfile = async () => {
-      let res = await update();
-    };
-    updateProfile();
-  }, []);
+export default function ProfileCard() {
+  const [activeTab, setActiveTab] = useState("My Profile");
 
   return (
-    <>
-      <div
-        className={cn(
-          "bg-white p-8 px-4 lg:px-8 mx-6 my-14 rounded-lg max-w-3xl sm:mx-auto flex flex-col"
-        )}
+    <div className="min-h-screen p-2 sm:p-4">
+      <CardContainer
+        headerTitle={
+          <span className="text-white font-medium text-lg">My Profile</span>
+        }
+        maxWidth="max-w-2xl"
       >
-        <div
-          className={cn(
-            " w-full grid grid-cols-1 lg:grid-cols-2 gap-4",
-            isEditing && "lg:grid-cols-1 place-content-center "
-          )}
-        >
-          <div className='relative flex flex-col items-center gap-4'>
-            <img
-              className={cn(
-                "rounded-full  h-40 w-40 lg:h-64 lg:w-64 mx-auto lg:mx-0  border-[6px] google-border p-1",
-                isEditing && "lg:mx-auto"
-                // userData?.profile?.no_show &&
-                //   userData?.profile?.no_show == 1 &&
-                //   " border-[8px] border-google-yellow",
-                // userData?.profile?.no_show &&
-                //   userData?.profile?.no_show == 2 &&
-                //   " border-[8px] border-google-red"
-              )}
-              width={500}
-              height={500}
-              src={
-                userData?.profile?.socials.github &&
-                extractGithubUsername(userData?.profile?.socials.github)
-                  ? `https://github.com/${extractGithubUsername(
-                      userData?.profile?.socials?.github
-                    )}.png`
-                  : "/assets/images/mascot.webp"
-              }
-              alt='gccd kol mascot'
-            />
-            {userData?.profile?.socials.github == undefined ||
-            userData?.profile?.socials.github == "" ? (
-              <span className='text-base text-google-darkGrey'>
-                Add your github for customized profile pic!
-              </span>
-            ) : (
-              <Link
-                href={`${userData?.profile?.socials?.github}`}
-                target='_blank'
-                rel='noreferrer noopener'
-              >
-                <Button variant={"link"} className='text-base'>
-                  <Edit className='h-4 w-4 mr-2' /> Edit picture on github
-                </Button>
-              </Link>
-            )}
-          </div>
-          <div className='text-xl text-black leading-10 flex flex-col space-y-4'>
-            {isEditing ? (
-              <ProfileForm
-                userData={userData}
-                updateHandler={() => setIsEditing(false)}
-              />
-            ) : (
-              <>
-                <p>
-                  Hi, I am{" "}
-                  <span className='highlight '>
-                    {userData?.profile?.first_name || DEFAULT_FIRST_NAME}{" "}
-                    {userData?.profile?.last_name || DEFAULT_LAST_NAME}
-                  </span>
-                  . My pronouns are{" "}
-                  <span className='highlight '>
-                    {getPronounLabel(
-                      `${userData?.profile?.pronoun}`,
-                      "Me/mine"
-                    ) || "Me/mine"}
-                  </span>
-                  . My supercool username is{" "}
-                  <span className='highlight '>{userData?.username}</span> . I
-                  am associated with{" "}
-                  <span className='highlight '>
-                    {(userData?.profile?.student
-                      ? userData?.profile?.college
-                      : userData?.profile?.company) || "no organization yet"}
-                  </span>{" "}
-                  {(userData?.profile?.college?.trim() !== "" ||
-                    userData?.profile?.company?.trim() !== "") && (
-                    <>
-                      as a{" "}
-                      <span className='highlight '>
-                        {userData?.profile?.student
-                          ? "Student"
-                          : "Professional"}
-                      </span>
-                    </>
-                  )}
-                  . You can reach out at{" "}
-                  <span className='highlight '>
-                    {userData?.email && maskEmail(userData?.email)}
-                  </span>
-                  {userData?.profile?.phone && (
-                    <>
-                      {" "}
-                      and{" "}
-                      <span className='highlight '>
-                        {maskPhoneNumber(userData?.profile?.phone)}
-                      </span>
-                    </>
-                  )}
-                  .
+        <div className="p-2 sm:p-4">
+          {/* Profile header */}
+          <div className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
+                  <AvatarImage
+                    src="/placeholder.svg?height=80&width=80"
+                    alt="Profile"
+                  />
+                  <AvatarFallback>SR</AvatarFallback>
+                </Avatar>
+                <img
+                  src="/images/profile/smile.png"
+                  alt="Smile"
+                  className="absolute -bottom-0 -right-1 h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-white dark:border-black"
+                />
+              </div>
+              <div>
+                <h2 className="text-lg sm:text-xl font-semibold text-foreground">
+                  Smruti Ranjan Nayak
+                </h2>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Computer & Network Security
                 </p>
-                <p>
-                  P.S. I have
-                  <span className='highlight'>
-                    {" "}
-                    {userData?.profile?.attempts} more
-                  </span>{" "}
-                  attempts to attend extended events .{" "}
-                  {/* {userData?.profile?.no_show && (
-                    <>
-                      {userData?.profile?.no_show > 0 && (
-                        <>
-                          I{" "}
-                          {userData?.profile?.no_show == 0 ? (
-                            "showed up for every approved ticket."
-                          ) : (
-                            <>
-                              {" "}
-                              <strong> did not </strong>show up to{" "}
-                              <span className='highlight'>
-                                {userData?.profile?.no_show} event(s)
-                              </span>{" "}
-                              <NoShowModal />
-                            </>
-                          )}
-                        </>
-                      )}
-                    </>
-                  )} */}
-                </p>
-                <div className='grid grid-cols-1  gap-4'>
-                  <LoadLink href={"/extended-events"}>
-                    <Button
-                      type='button'
-                      className='w-full text-center text-foreground text-base group'
-                    >
-                      Register for events
-                      <ArrowRight className='inline-flex h-4 w-4 ml-2 group-hover:-rotate-45 duration-100' />{" "}
-                    </Button>
-                  </LoadLink>
-                  <Button
-                    type='button'
-                    variant={"ghost"}
-                    className='w-full text-center text-base'
-                    onClick={() => setIsEditing((edit) => !edit)}
-                  >
-                    <Edit className='inline-flex h-4 w-4 mr-2' /> Edit my
-                    profile
-                  </Button>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-        {!isEditing &&
-          userData?.profile?.socials &&
-          Object.keys(userData?.profile?.socials)?.length > 0 && (
-            <div className='my-4 flex items-center justify-center gap-2 mx-auto row-span-2 col-span-2 '>
-              {userData?.profile?.socials?.github && (
-                <Link
-                  href={`${userData?.profile?.socials?.github}`}
-                  target='_blank'
-                  rel='noopener noreferer'
-                >
-                  <img
-                    src={"/assets/icons/github.svg"}
-                    alt='github logo'
-                    className='h-8 w-8'
-                    title={`${userData?.profile?.socials?.github}`}
-                  />
-                </Link>
-              )}
-              {userData?.profile?.socials?.linkedin && (
-                <Link
-                  href={`${userData?.profile?.socials?.linkedin}`}
-                  target='_blank'
-                  rel='noopener noreferer'
-                >
-                  <img
-                    src={"/assets/icons/linkedin.svg"}
-                    alt='linkedin logo'
-                    className='h-8 w-8'
-                    title={`${userData?.profile?.socials?.linkedin}`}
-                  />
-                </Link>
-              )}
-              {userData?.profile?.socials?.twitter && (
-                <Link
-                  href={`${userData?.profile?.socials?.twitter}`}
-                  target='_blank'
-                  rel='noopener noreferer'
-                >
-                  <img
-                    src={"/assets/icons/twitter.svg"}
-                    alt='twitter logo'
-                    className='h-8 w-8'
-                    title={`${userData?.profile?.socials?.twitter}`}
-                  />
-                </Link>
-              )}
-              {userData?.profile?.socials?.website && (
-                <Link
-                  href={`${userData?.profile?.socials?.website}`}
-                  target='_blank'
-                  rel='noopener noreferer'
-                >
-                  <img
-                    src={"/assets/icons/website.svg"}
-                    alt='twitter logo'
-                    className='h-8 w-8'
-                    title={`${userData?.profile?.socials?.website}`}
-                  />
-                </Link>
-              )}
+              </div>
             </div>
-          )}
-      </div>
-    </>
-  );
-};
+            <div className="bg-[#076eff] hover:bg-[#076eff]/90 text-white px-4 sm:px-6 flex items-center gap-2 text-sm sm:text-base p-2 rounded-4xl">
+              <img
+                src="/images/cfs/circleStar.svg"
+                alt="attendee badge"
+                className="h-3 w-3 sm:h-4 sm:w-4"
+              />
+              <span>Attendee</span>
+            </div>
+          </div>
 
-export default ProfileCard;
+          {/* Navigation tabs */}
+          <div className="mb-8 flex flex-wrap gap-2 sm:gap-6">
+            {["My Profile", "Points", "Leaderboard"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
+                  activeTab === tab
+                    ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white"
+                    : "text-[#676c72] hover:text-[#000000] dark:text-[#e5e7eb] dark:hover:text-white"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {activeTab === "My Profile" && (
+            <>
+              {/* Form fields */}
+              <div className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="fullName"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      Full Name
+                    </Label>
+                    <Input
+                      id="fullName"
+                      placeholder="John Doe"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="username"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      Username
+                    </Label>
+                    <Input
+                      id="username"
+                      placeholder="@username"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="email"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      Email Address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="phone"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      Phone Number
+                    </Label>
+                    <Input
+                      id="phone"
+                      placeholder="+91 98765 43210"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="linkedin"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      LinkedIn
+                    </Label>
+                    <Input
+                      id="linkedin"
+                      placeholder="linkedin.com/in/username"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="github"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      GitHub
+                    </Label>
+                    <Input
+                      id="github"
+                      placeholder="github.com/username"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="twitter"
+                      className="text-xs sm:text-sm text-muted-foreground"
+                    >
+                      Twitter
+                    </Label>
+                    <Input
+                      id="twitter"
+                      placeholder="twitter.com/username"
+                      className="border-input focus:border-[#076eff] text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="about"
+                    className="text-xs sm:text-sm text-muted-foreground"
+                  >
+                    About
+                  </Label>
+                  <Textarea
+                    id="about"
+                    placeholder="Tell us about yourself, your skills, and interests..."
+                    className="min-h-[100px] sm:min-h-[120px] border-input focus:border-[#076eff] resize-none text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Save button */}
+              <div className="mt-6 sm:mt-8">
+                <Button className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 text-sm sm:text-base flex items-center gap-2">
+                  <img 
+                    src="/images/cfs/gemini.svg"
+                    alt=""
+                    className="h-4 w-4"
+                  />
+                  Save
+                  <img 
+                    src="/images/cfs/gemini.svg"
+                    alt=""
+                    className="h-4 w-4"
+                  />
+                </Button>
+              </div>
+            </>
+          )}
+
+          {activeTab === "Points" && <Points />}
+
+          {activeTab === "Leaderboard" && <LeaderBoard/>}
+        </div>
+      </CardContainer>
+    </div>
+  );
+}
