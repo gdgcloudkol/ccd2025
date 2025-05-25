@@ -80,3 +80,31 @@ export interface SignInContent {
 export interface GenericJson {
     [key: string]: string | undefined | number;
 }
+
+export type UserProfile = {
+    id: number;
+    pronoun: 'he' | 'she' | 'they' | string;
+    first_name: string;
+    last_name: string;
+    settings: Record<string, unknown>;
+    country_code: string;
+    phone: string;
+    college: string | null;
+    course: string | null;
+    graduation_year: number | null;
+    company: string | null;
+    role: string;
+    socials: {
+      github: string;
+      twitter: string;
+      linkedin: string;
+    };
+    tsize: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | string;
+    profile_lock: boolean;
+    student: boolean;
+    event_role: 'attendee' | 'organizer' | 'volunteer' | string;
+    attempts: number;
+    no_show: number;
+    user: number;
+    x_event: string | null;
+  };

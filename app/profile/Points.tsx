@@ -1,6 +1,14 @@
 import React from "react";
 
 const Points = ({ games = [] }) => {
+
+  return <div className="py-4 text-center">
+  <h3 className="text-lg sm:text-xl font-medium mb-4">Points</h3>
+  <p className="text-sm text-muted-foreground">
+    Something cool is coming soon! <br/>
+    <span className="text-secondary">#CCD_2025_WB</span>
+  </p>
+</div>
   // Default data if no games provided
   const defaultGames = [
     {
