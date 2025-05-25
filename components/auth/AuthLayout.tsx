@@ -1,6 +1,8 @@
+"use client"
 import AuthContent from "@/public/content/auth.json";
 import { ReactNode } from "react";
 import Layout from "../layout/Layout";
+import { usePathname } from "next/navigation";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -19,15 +21,37 @@ export default function AuthLayout({
   bannerImg = AuthContent.bannerImg,
   headerContent = <></>,
 }: AuthLayoutProps) {
+
+  let title="Welcome to GDG Cloud Kolkata"
+  let description= "You can reach out to us at anytime via  <a style=\"color:#4285f4\" href=\"mailto:gdgcloudkol@gmail.com\">gdgcloudkol@gmail.com</a>"
+  const pathname= usePathname()
+
+  if(pathname=="/login")
+    {
+      title=AuthContent.loginFormTitle
+      description= AuthContent.loginFormDescription
+    }
+ else if(pathname=="/signup")
+  {
+    title=AuthContent.signupFormTitle
+    description= AuthContent.signupFormDescription
+  }
+  else if (pathname.includes("forgot")||pathname.includes("reset-password"))
+    {
+      title=AuthContent.resetFormTitle
+      description= AuthContent.signupFormDescription
+    }
+
+
   return (
     <Layout>
-      <section className="min-h-[calc(100vh-4rem)] w-full bg-gradient-to-b from-background to-secondary/20 container mx-auto px-4 md:px-12 py-14 relative z-10 pt-[10%]">
+      <section className="min-h-[calc(100vh-4rem)] w-full container mx-auto px-4 md:px-12 py-14 relative z-10 pt-[10%]">
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 py-10 px-4 ">
           {showBanner && (
             <div className="hidden md:flex banner flex-col col-span-2 text-card-foreground p-8 rounded-xl space-y-6 justify-start">
               <h1
                 className="text-4xl font-bold text-left bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"
-                dangerouslySetInnerHTML={{ __html: AuthContent.loginFormTitle }}
+                dangerouslySetInnerHTML={{ __html: title }}
               />
               <p
                 className="text-left text-muted-foreground text-lg"
@@ -44,7 +68,7 @@ export default function AuthLayout({
           >
             <div className="overflow-hidden border border-[var(--color-border)] bg-cfs-gradient rounded-3xl p-[1px] max-w-xl">
               <div className="rounded-t-3xl w-full h-12 bg-gradient-to-r from-[#ea4335] via-[#4285f4] to-[#34a853] flex items-center px-6 relative">
-                <span className="text-white text-lg font-semibold">
+                <span className="text-white text-sm font-semibold">
                   {headerContent}
                 </span>
                 <div className="absolute right-6 flex items-center space-x-1">
@@ -59,7 +83,7 @@ export default function AuthLayout({
                   ].map((icon, index) => (
                     <div
                       key={index}
-                      className="w-5 h-5 rounded-full flex items-center justify-center"
+                      className="size-4 rounded-full flex items-center justify-center"
                     >
                       <img src={icon.src} alt={icon.alt} />
                     </div>

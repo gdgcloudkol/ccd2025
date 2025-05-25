@@ -98,6 +98,12 @@ export const authOptions: NextAuthOptions = {
             return '/profile'
         }
     },
+    events:{
+        signOut:async()=>{
+            if(typeof window!=="undefined")
+            window.location.href="/login"
+        }
+    },
     pages: {
         signIn: LOGIN_URL,
         signOut: LOGIN_URL,

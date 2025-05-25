@@ -1,11 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "../ui/ThemeToggle";
 import Logo from "./Logo";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, User } from "lucide-react";
+import { useSession } from "next-auth/react";
+import PrivateNav from "./PrivateNav";
+import { UserData } from "@/types/login";
+import LoadLink from "../blocks/LoadLink";
+import FeatureRuleContent from "@/public/content/feature.rule.json";
+const ApplyLink=()=>{
+  return  <Link
+  href="/apply"
+  className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
+>
+  Apply for Tickets
+  <ArrowRight className="w-4 h-4 ml-2" />
+</Link>
+}
+const UserSection = ()=>{
+  const [mounted, setMounted] = useState(false);
+  const session = useSession()
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if(!mounted)
+    return <ApplyLink/>
+
+  return session?.data?.user ? <PrivateNav user={session.data.user as unknown as UserData}/> : <LoadLink
+  href="/login"
+  className="bg-primary text-secondary p-3 px-6 rounded-full font-light flex items-center"
+>
+  Login Now
+  <span className="ml-2 bg-secondary text-primary rounded-full h-6 w-6 flex items-center justify-center text-xs">
+    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+  </span>
+</LoadLink>
+}
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +49,7 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+ 
   return (
     <nav className="bg-background p-3 fixed top-4 left-0 right-0 z-[999] w-11/12 xl:w-10/12 mx-auto rounded-full border border-border">
       <div className="container mx-auto px-4 md:px-6">
@@ -52,13 +86,14 @@ export default function Navbar() {
           {/* Desktop Login Button and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
-            <Link
+            {FeatureRuleContent.navbar.navShowProfile ?<UserSection/>:<Link
               href="/apply"
               className="bg-primary text-primary-foreground p-3 px-6 rounded-full font-bold flex items-center whitespace-nowrap"
             >
               Apply for Tickets
               <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
+            </Link>}
+
           </div>
 
           {/* Mobile Menu Button */}

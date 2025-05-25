@@ -14,12 +14,10 @@ export const metadata: Metadata = {
 const Page = async () => {
   const session = await getServerSession(authOptions);
   if (session && session?.access) redirect("/profile");
-  
-  return (
-    <AuthLayout showBanner={false}>
-      <ResetForm />
-    </AuthLayout>
-  );
+  if(!session)
+    redirect('/login')
+  return null
+ 
 };
 
 export default Page; 

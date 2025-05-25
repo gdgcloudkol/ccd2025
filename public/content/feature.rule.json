@@ -1,0 +1,67 @@
+{
+  "navbar": {
+    "navbarPermanent": true,
+    "navbarSpatialLoggedIn": true,
+    "navbarSpatialModeratorLoggedIn": true,
+    "navbarSpatialNotLoggedIn": true,
+    "navbarSpatialLoggedInBT": true,
+    "navShowProfile":true
+  },
+  "disabledRoutes": ["/dashboard", "/termsAndCondition"],
+ 
+  "disabledPartnerTitles": [],
+  "disabledPartners": [],
+  "disabledCommunityPartners": [],
+  "home": {
+    "ticketButtonStateNotLogin": "mcd",
+    "ticketButtonStateLogin": "mcd",
+    "ticketButtonBought": "bt",
+    "disabledTicketButton": ["rt"],
+    "cfsButtonStateNotLogin": "cfsc",
+    "cfsButtonStateLogin": "cfsc",
+    "disabledCfsButton": [],
+    "timer": true,
+    "cfs": true,
+    "location": true,
+    "date": true,
+    "showCommunityPartners": true
+
+
+  },
+  "disabledSpeakerContent": {
+    "speakers": true
+  },
+  "disabledTeamsContent": {
+    "team": true
+  },
+  "disabledEventsContent": {
+    "events": true
+  },
+  "testEventSlug": "hidden",
+  "disabledContestContent": {
+    "contests": true,
+    "maxApproved": 3
+  },
+  "disabledFooterContent": {
+    "footer": true,
+    "section": [
+      {
+        "title": "About",
+        "hide": false,
+        "nOI": 5
+      },
+      {
+        "title": "Resources",
+        "hide": false,
+        "nOI": 5
+      },
+      {
+        "title": "Legal",
+        "hide": false,
+        "nOI": 2
+      }
+    ]
+  },
+  "disabledSocial": [],
+  "disabledSpeakers": []
+}

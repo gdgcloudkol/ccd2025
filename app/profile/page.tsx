@@ -24,10 +24,10 @@ const Page = async () => {
             first_name:"Gourav",
             last_name:"Ghosal",
             pk:1,
-            profile:{
-              bio:"",
-              role:"member"
-            }
+            // profile:{
+            //   bio:"",
+            //   role:"member"
+            // }
           }} />
         </div>
       </div>
