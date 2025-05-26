@@ -7,7 +7,7 @@ import { signOut } from "next-auth/react"
 export default function LogoutPage() {
   useEffect(() => {
     const performLogout = async () => {
-      signOut({ redirect: false })
+      signOut()
 
     }
     performLogout()
