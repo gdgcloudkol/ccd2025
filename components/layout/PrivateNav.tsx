@@ -2,7 +2,7 @@
 
 import { CreditCard, LogOut, PlusCircle, Settings2, Ticket, User } from "lucide-react";
 import { signOut } from "next-auth/react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Button from "@/components/ui/Button";
 import {
   DropdownMenu,
@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import LoadLink from "@/components/blocks/LoadLink";
 import { UserData, UserProfileData } from "@/types/login";
-import { DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME } from "@/lib/constants/generic";
 
 import { extractGithubUsername } from "@/lib/utils";
 
