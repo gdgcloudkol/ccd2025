@@ -50,11 +50,11 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
   const [activeTab, setActiveTab] = useState("My Profile");
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-  const {update}= useSession()
+  const { update } = useSession()
   const formSchema = z.object({
     firstName: z.string().min(1, { message: "First name is required" }),
     lastName: z.string().min(1, { message: "Last name is required" }),
-    email: z.string().email({ message: "Invalid email address" }).default(session.user.email||""),
+    email: z.string().email({ message: "Invalid email address" }).default(session.user.email || ""),
     company: z.string().optional(),
     role: z.string().min(1, { message: "Role is required" }).optional(),
     pronoun: z.string().optional(),
@@ -69,7 +69,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
       .refine(
         (val) =>
           val === "" ||
-          /^https?:\/\/(www\.)?(twitter\.com|x\.com)\/[A-Za-z0-9_]+$/.test(val),
+          /^https?:\/\/(www\.)?(twitter\.com|x\.com)\/[A-Za-z0-9_]+\/?$/.test(val),
         { message: "Invalid Twitter URL" }
       )
       .optional(),
@@ -120,24 +120,24 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
 
     setIsSubmitting(true);
 
-    const data=
-      {
-        firstName:values.firstName || "",
-        lastName:values.lastName || "",
-        email: values.email || "",
-        company:values.company,
-        role: values.role|| "",
-        pronoun: values.pronoun || "",
-        phone: values.phone || "",
-        college: values.college || "",
-        course: values.course || "",
-        graduation_year: values.graduation_year || undefined,
-        student: values.student ?? false,
-        socials:{
-          twitter: values.twitter || "",
-          linkedin: values.linkedin || "",
-          github: values.github || "",
-        }
+    const data =
+    {
+      first_name: values.firstName || "",
+      last_name: values.lastName || "",
+      email: values.email || "",
+      company: values.company,
+      role: values.role || "",
+      pronoun: values.pronoun || "",
+      phone: values.phone || "",
+      college: values.college || "",
+      course: values.course || "",
+      graduation_year: values.graduation_year || undefined,
+      student: values.student ?? false,
+      socials: {
+        twitter: values.twitter || "",
+        linkedin: values.linkedin || "",
+        github: values.github || "",
+      }
     }
 
     try {
@@ -174,7 +174,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
       >
         <div className="p-2 sm:p-4">
           {/* Profile header */}
-          <div className="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+          <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
             <div className="flex items-center gap-4">
               <div className="relative">
                 <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
@@ -214,8 +214,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap-reverse">
               <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Professional</span>
                 <Switch
                   checked={form.watch("student")}
                   onCheckedChange={(checked: boolean) => {
@@ -234,7 +235,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                   }}
                 />
                 <span className="text-sm text-muted-foreground">
-                  {form.watch("student") ? "Student" : "Professional"}
+                  Student
                 </span>
               </div>
               <div className="bg-[#076eff] hover:bg-[#076eff]/90 text-white px-4 sm:px-6 flex items-center gap-2 text-sm sm:text-base p-2 rounded-4xl">
@@ -266,7 +267,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
 
           {activeTab === "My Profile" && (
             <Form  {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit,onError)} className="space-y-4 sm:space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <FormField
                     control={form.control}
@@ -337,7 +338,7 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       </FormItem>
                     )}
                   />
-                 <FormField
+                  <FormField
                     control={form.control}
                     name="phone"
                     render={({ field }) => (
