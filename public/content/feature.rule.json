@@ -5,7 +5,7 @@
     "navbarSpatialModeratorLoggedIn": true,
     "navbarSpatialNotLoggedIn": true,
     "navbarSpatialLoggedInBT": true,
-    "navShowProfile":true
+    "navShowProfile":false
   },
   "disabledRoutes": ["/dashboard", "/termsAndCondition"],
  
