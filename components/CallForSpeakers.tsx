@@ -12,6 +12,22 @@ interface SpeakerProps {
   image: string;
 }
 
+interface ApiSpeaker {
+  id: string;
+  fullName: string;
+  tagLine: string;
+  bio: string;
+  profilePicture: string;
+  links?: {
+    title: string;
+    url: string;
+  }[];
+  questionAnswers?: {
+    answer: string;
+  }[];
+  sessions?: any[];
+}
+
 // Speaker component
 const Speaker: FC<SpeakerProps> = ({ name, role, company, image }) => (
   <div className="flex flex-col items-center sm:flex-row p-2 w-full max-h-[120px]">
@@ -30,7 +46,7 @@ const Speaker: FC<SpeakerProps> = ({ name, role, company, image }) => (
       <h3 className="font-medium text-sm text-[var(--color-foreground)]">
         {name}
       </h3>
-      <p className="text-xs text-[var(--color-muted-foreground)] max-sm:line-clamp-2">
+      <p className="text-xs text-[var(--color-muted-foreground)] line-clamp-2">
         {role}
         {company ? `, ${company}` : ""}
       </p>
@@ -41,6 +57,9 @@ const Speaker: FC<SpeakerProps> = ({ name, role, company, image }) => (
 export default function CallForSpeakers() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [speakersPerView, setSpeakersPerView] = useState(3);
+  const [apiSpeakers, setApiSpeakers] = useState<SpeakerProps[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Header icons
   const headerIcons = [
@@ -50,10 +69,81 @@ export default function CallForSpeakers() {
     { src: "/images/elements/starOuter.svg", alt: "starOuter" },
   ];
 
-  // Speaker data
-  const speakers = CONTENT.pastSpeakers;
+  // Speaker data from JSON (fallback)
+  const fallbackSpeakers = CONTENT.pastSpeakers;
 
-  // Set speakers per view on initial render and resize
+  // Fetch speakers from API
+  useEffect(() => {
+    const fetchSpeakers = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch(
+          "https://sessionize.com/api/v2/ilkj4hf0/view/Speakers"
+        );
+        console.log(res);
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch speakers: ${res.status}`);
+        }
+
+        const data: ApiSpeaker[] = await res.json();
+
+        const filterIds = [
+          "7a5d302d-661e-4b56-b7c4-283f7208f371",
+          "c185e3ae-0cd9-49f5-bbb3-2a8d95636a9a",
+        ];
+
+        const filteredData = data.filter(
+          (speaker) => !filterIds.includes(speaker.id)
+        );
+
+        const formattedSpeakers: SpeakerProps[] = filteredData.map(
+          (speaker) => {
+            let role = speaker.tagLine || "";
+            let company = "";
+
+            if (role) {
+              const roleParts = role.split("@");
+              if (roleParts.length > 1) {
+                role = roleParts[0].trim();
+                company = roleParts[1].trim();
+              } else {
+                const atIndex = role.indexOf(" at ");
+                if (atIndex > -1) {
+                  company = role.substring(atIndex + 4);
+                  role = role.substring(0, atIndex);
+                }
+              }
+            }
+
+            return {
+              name: speaker.fullName,
+              role: role,
+              company: company,
+              image:
+                speaker.profilePicture || "/images/speakers/placeholder.svg",
+            };
+          }
+        );
+
+        setApiSpeakers(formattedSpeakers);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching speakers:", err);
+        setError("Failed to load speakers from API. Using fallback data.");
+        setApiSpeakers(fallbackSpeakers);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchSpeakers();
+  }, []);
+
+  //  API speakers if available, otherwise fallback to JSON data
+  const speakers = apiSpeakers.length > 0 ? apiSpeakers : fallbackSpeakers;
+
+  //  Speakers per view on initial render and resizing
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -127,24 +217,14 @@ export default function CallForSpeakers() {
                   >
                     <img
                       src="/images/elements/gemini.svg"
-                      className="mr-1 dark:hidden block w-4 h-4"
-                      alt={"gemini"}
-                    />
-                    <img
-                      src="/images/elements/gemini_dark.svg"
-                      className="mr-1 hidden dark:block w-4 h-4"
-                      alt={"gemini"}
+                      className="mr-1 w-4 h-4 dark:invert"
+                      alt="gemini"
                     />
                     Apply Now
                     <img
                       src="/images/elements/gemini.svg"
-                      className="ml-1 dark:hidden block w-4 h-4"
-                      alt={"gemini"}
-                    />
-                    <img
-                      src="/images/elements/gemini_dark.svg"
-                      className="ml-1 hidden dark:block w-4 h-4"
-                      alt={"gemini"}
+                      className="ml-1 w-4 h-4 dark:invert"
+                      alt="gemini"
                     />
                   </Link>
                 </div>
@@ -170,9 +250,18 @@ export default function CallForSpeakers() {
             <div className="mt-8 pb-6">
               <div className="text-center mb-4">
                 <h2 className="text-xl font-medium inline-block text-[var(--color-foreground)]">
-                  Past Speakers 2024
+                  {isLoading
+                    ? "Loading Speakers..."
+                    : error
+                    ? "Past Speakers 2024"
+                    : "Our Speakers"}
                   <hr className="mt-1 w-32 mx-auto border-[var(--color-border)]" />
                 </h2>
+                {error && (
+                  <p className="text-xs text-[var(--color-muted-foreground)]">
+                    Our Previous Speakers
+                  </p>
+                )}
               </div>
 
               <div className="relative">
@@ -181,6 +270,7 @@ export default function CallForSpeakers() {
                   className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-[var(--color-chart-1)] dark:bg-[var(--color-chart-2)] rounded-full flex items-center justify-center text-[var(--color-background)]"
                   aria-label="Previous speakers"
                   onClick={handlePrev}
+                  disabled={isLoading}
                 >
                   <img
                     src="/images/elements/leftArrow.svg"
@@ -191,23 +281,30 @@ export default function CallForSpeakers() {
 
                 {/* Carousel */}
                 <div className="px-12 transition-all duration-300">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                    {visibleSpeakers.map((speaker, index) => (
-                      <Speaker
-                        key={currentIndex + index}
-                        name={speaker.name}
-                        role={speaker.role}
-                        company={speaker.company}
-                        image={speaker.image}
-                      />
-                    ))}
-                  </div>
+                  {isLoading ? (
+                    <div className="h-20 flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--color-chart-1)]"></div>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                      {visibleSpeakers.map((speaker, index) => (
+                        <Speaker
+                          key={currentIndex + index}
+                          name={speaker.name}
+                          role={speaker.role}
+                          company={speaker.company}
+                          image={speaker.image}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <button
                   className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-[var(--color-chart-1)] dark:bg-[var(--color-chart-2)] rounded-full flex items-center justify-center text-[var(--color-background)]"
                   aria-label="Next speakers"
                   onClick={handleNext}
+                  disabled={isLoading}
                 >
                   <img
                     src="/images/elements/rightArrow.svg"
