@@ -25,9 +25,8 @@ const formSchema = z.object({
 export default function ResetForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const token = searchParams.get("token");
-
+  const searchParams = useSearchParams();
+  const onboarding= searchParams.get("onboarding")?searchParams.get("onboarding")=="true":false
 
 const pathname= usePathname()
 const token = pathname.split('/')[3]
@@ -75,9 +74,9 @@ const token = pathname.split('/')[3]
 
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
+      <div className="space-y-2 inline-block md:hidden">
         <h1 className="text-3xl font-bold text-center md:text-left bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-          Reset Your Password
+        {onboarding?"Set":"Reset"}  Your Password
         </h1>
         <p className="text-center md:text-left text-muted-foreground">
           Enter your new password below.
@@ -88,7 +87,7 @@ const token = pathname.split('/')[3]
         form={form}
         onSubmit={onSubmit}
         isLoading={isLoading}
-        submitText="Reset Password"
+        submitText={onboarding?"Activate account":"Reset Password"}
         error={form.formState.errors.root?.message}
         fields={[
           {
@@ -105,7 +104,7 @@ const token = pathname.split('/')[3]
             placeholder: "********",
           },
         ]}
-        footer={
+        footer={ onboarding?null:
           <p>
             Remember your password?{" "}
             <LoadLink
