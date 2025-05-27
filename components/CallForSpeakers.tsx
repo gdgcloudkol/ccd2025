@@ -245,7 +245,7 @@ export default function CallForSpeakers() {
                     ? "Loading Speakers..."
                     : error
                     ? "Event Speakers"
-                    : "Our Speakers"}
+                    : "Our Past Speakers"}
                   <hr className="mt-1 w-32 mx-auto border-[var(--color-border)]" />
                 </h2>
               </div>
