@@ -1,20 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/UserAvatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/UserAvatar";
 import Button from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
 import CardContainer from "@/components/ui/CardContainer";
 import Points from "./Points";
 import LeaderBoard from "./LeaderBoard";
 import { Session } from "next-auth";
-import { Select, SelectLabel, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectLabel,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { extractGithubUsername } from "@/lib/utils";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner"
+import { toast } from "sonner";
 import {
   Form,
   FormControl,
@@ -45,16 +57,24 @@ type FormValues = {
   github?: string;
 };
 
-export default function ProfileCard({ user, session }: { user: UserProfile, session: Session }) {
-
+export default function ProfileCard({
+  user,
+  session,
+}: {
+  user: UserProfile;
+  session: Session;
+}) {
   const [activeTab, setActiveTab] = useState("My Profile");
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
-  const { update } = useSession()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const { update } = useSession();
   const formSchema = z.object({
     firstName: z.string().min(1, { message: "First name is required" }),
     lastName: z.string().min(1, { message: "Last name is required" }),
-    email: z.string().email({ message: "Invalid email address" }).default(session.user.email || ""),
+    email: z
+      .string()
+      .email({ message: "Invalid email address" })
+      .default(session.user.email || ""),
     company: z.string().optional(),
     role: z.string().min(1, { message: "Role is required" }).optional(),
     pronoun: z.string().optional(),
@@ -69,7 +89,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
       .refine(
         (val) =>
           val === "" ||
-          /^https?:\/\/(www\.)?(twitter\.com|x\.com)\/[A-Za-z0-9_]+\/?$/.test(val),
+          /^https?:\/\/(www\.)?(twitter\.com|x\.com)\/[A-Za-z0-9_]+\/?$/.test(
+            val
+          ),
         { message: "Invalid Twitter URL" }
       )
       .optional(),
@@ -78,7 +100,8 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
       .string()
       .trim()
       .refine(
-        (val) => val === "" || /^https?:\/\/(www\.)?linkedin\.com\/.+$/.test(val),
+        (val) =>
+          val === "" || /^https?:\/\/(www\.)?linkedin\.com\/.+$/.test(val),
         { message: "Invalid LinkedIn URL" }
       )
       .optional(),
@@ -114,14 +137,12 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
   });
 
   const onError = (errors: any) => {
-    console.error("Validation Errors:", errors)
-  }
+    console.error("Validation Errors:", errors);
+  };
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-
     setIsSubmitting(true);
 
-    const data =
-    {
+    const data = {
       first_name: values.firstName || "",
       last_name: values.lastName || "",
       email: values.email || "",
@@ -137,8 +158,8 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
         twitter: values.twitter || "",
         linkedin: values.linkedin || "",
         github: values.github || "",
-      }
-    }
+      },
+    };
 
     try {
       const response = await fetch("/api/users", {
@@ -151,18 +172,18 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
         const error = await response.json();
         throw new Error(error.message || "Something went wrong");
       }
-      toast("Profile updated successfully!")
-      await update()
+      toast("Profile updated successfully!");
+      await update();
       router.refresh();
     } catch (error) {
       form.setError("root", {
-        message: error instanceof Error ? error.message : "Something went wrong",
+        message:
+          error instanceof Error ? error.message : "Something went wrong",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
 
   return (
     <div className="min-h-screen p-2 sm:p-4 w-full mx-auto">
@@ -180,10 +201,10 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                 <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
                   <AvatarImage
                     src={
-                      (user.socials?.github &&
-                        `https://github.com/${extractGithubUsername(
-                          user.socials?.github
-                        )}.png`)
+                      user.socials?.github &&
+                      `https://github.com/${extractGithubUsername(
+                        user.socials?.github
+                      )}.png`
                     }
                     alt={
                       (user.socials?.github &&
@@ -191,7 +212,10 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       "avatar"
                     }
                   />
-                  <AvatarFallback>{user?.first_name[0] || "A"}{user?.last_name[0] || "W"}</AvatarFallback>
+                  <AvatarFallback>
+                    {user?.first_name[0] || "A"}
+                    {user?.last_name[0] || "W"}
+                  </AvatarFallback>
                 </Avatar>
                 <img
                   src="/images/profile/smile.png"
@@ -209,34 +233,59 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                   </p>
                   <div className="h-1 w-1 rounded-full bg-muted-foreground"></div>
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    {form.watch("student") ? form.watch("college") : form.watch("company")}
+                    {form.watch("student")
+                      ? form.watch("college")
+                      : form.watch("company")}
                   </p>
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-4 flex-wrap-reverse">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Professional</span>
+                <span className="text-sm text-muted-foreground">
+                  Professional
+                </span>
                 <Switch
                   checked={form.watch("student")}
                   onCheckedChange={(checked: boolean) => {
-                    form.setValue("student", checked);
-                    // Reset all relevant fields when switching modes
+                    // Store current values before changing anything
+                    const currentCompany = form.getValues("company");
+                    const currentCollege = form.getValues("college");
+                    form.setValue("student", checked, {
+                      shouldDirty: true,
+                      shouldTouch: true,
+                      shouldValidate: true,
+                    });
+
                     if (checked) {
                       // Switching to student mode
-                      form.setValue("company", "");
-                      form.setValue("role", "");
+                      form.setValue("company", "", { shouldDirty: true });
+                      form.setValue("role", "", { shouldDirty: true });
+
+                      // If we have a value from the user object and current field is empty, restore it
+                      if (user.college && !currentCollege) {
+                        form.setValue("college", user.college, {
+                          shouldDirty: true,
+                        });
+                      }
                     } else {
                       // Switching to professional mode
-                      form.setValue("college", "");
-                      form.setValue("course", "");
-                      form.setValue("graduation_year", undefined);
+                      form.setValue("college", "", { shouldDirty: true });
+                      form.setValue("course", "", { shouldDirty: true });
+                      form.setValue("graduation_year", undefined, {
+                        shouldDirty: true,
+                      });
+
+                      // If we have a value from the user object and current field is empty, restore it
+                      if (user.company && !currentCompany) {
+                        form.setValue("company", user.company, {
+                          shouldDirty: true,
+                        });
+                      }
                     }
                   }}
                 />
-                <span className="text-sm text-muted-foreground">
-                  Student
-                </span>
+                <span className="text-sm text-muted-foreground">Student</span>
               </div>
               <div className="bg-[#076eff] hover:bg-[#076eff]/90 text-white px-4 sm:px-6 flex items-center gap-2 text-sm sm:text-base p-2 rounded-4xl">
                 <img
@@ -255,10 +304,11 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${activeTab === tab
-                  ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white"
-                  : "text-[#676c72] hover:text-[#000000] dark:text-[#e5e7eb] dark:hover:text-white"
-                  }`}
+                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
+                  activeTab === tab
+                    ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white"
+                    : "text-[#676c72] hover:text-[#000000] dark:text-[#e5e7eb] dark:hover:text-white"
+                }`}
               >
                 {tab}
               </button>
@@ -266,15 +316,20 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
           </div>
 
           {activeTab === "My Profile" && (
-            <Form  {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-4 sm:space-y-6">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit, onError)}
+                className="space-y-4 sm:space-y-6"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <FormField
                     control={form.control}
                     name="firstName"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">First Name</FormLabel>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          First Name
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="gdgcloudkol"
@@ -291,7 +346,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     name="lastName"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">Last Name</FormLabel>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          Last Name
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Doe"
@@ -311,8 +368,13 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     name="pronoun"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">Pronouns</FormLabel>
-                        <Select onValueChange={field.onChange} value={field.value}>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          Pronouns
+                        </FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select your pronoun" />
@@ -321,11 +383,14 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                           <SelectContent>
                             <SelectGroup>
                               {[
-                                { value: "NA", display_name: "Prefer not to say" },
+                                {
+                                  value: "NA",
+                                  display_name: "Prefer not to say",
+                                },
                                 { value: "she", display_name: "She/Her" },
                                 { value: "he", display_name: "He/Him" },
                                 { value: "they", display_name: "They/Them" },
-                                { value: "other", display_name: "Other" }
+                                { value: "other", display_name: "Other" },
                               ].map((e) => (
                                 <SelectItem key={e.value} value={e.value}>
                                   {e.display_name}
@@ -343,7 +408,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     name="phone"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">Phone Number</FormLabel>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          Phone Number
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="+91 98765 43210"
@@ -357,7 +424,6 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                   />
                 </div>
 
-
                 {form.watch("student") ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <FormField
@@ -365,7 +431,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       name="college"
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className="text-xs sm:text-sm text-muted-foreground">College</FormLabel>
+                          <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                            College
+                          </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Your College"
@@ -382,20 +450,23 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       name="graduation_year"
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className="text-xs sm:text-sm text-muted-foreground">Graduation Year</FormLabel>
+                          <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                            Graduation Year
+                          </FormLabel>
                           <FormControl>
                             <Input
                               type="number"
                               placeholder="2024"
                               className="border-input focus:border-[#076eff] text-sm"
                               {...field}
-                              onChange={(e) => field.onChange(parseInt(e.target.value))}
+                              onChange={(e) =>
+                                field.onChange(parseInt(e.target.value))
+                              }
                             />
                           </FormControl>
                           <FormMessage className="text-xs text-red-500" />
                         </FormItem>
                       )}
-
                     />
                     <FormField
                       control={form.control}
@@ -424,7 +495,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       name="company"
                       render={({ field }) => (
                         <FormItem className="space-y-2">
-                          <FormLabel className="text-xs sm:text-sm text-muted-foreground">Company</FormLabel>
+                          <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                            Company
+                          </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Your Company"
@@ -464,7 +537,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     name="linkedin"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">LinkedIn</FormLabel>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          LinkedIn
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="linkedin.com/in/username"
@@ -481,7 +556,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     name="github"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">GitHub</FormLabel>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          GitHub
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="github.com/username"
@@ -498,7 +575,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                     name="twitter"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">Twitter</FormLabel>
+                        <FormLabel className="text-xs sm:text-sm text-muted-foreground">
+                          Twitter
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="twitter.com/username"
@@ -512,7 +591,9 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                   />
                 </div>
                 {form.formState.errors.root && (
-                  <p className="text-sm text-red-500">{form.formState.errors.root.message}</p>
+                  <p className="text-sm text-red-500">
+                    {form.formState.errors.root.message}
+                  </p>
                 )}
 
                 {/* Save button */}
@@ -541,7 +622,6 @@ export default function ProfileCard({ user, session }: { user: UserProfile, sess
                       });
                     }}
                   >
-
                     <img
                       src="/images/cfs/gemini.svg"
                       alt=""
