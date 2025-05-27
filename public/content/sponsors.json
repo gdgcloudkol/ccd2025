@@ -1,0 +1,68 @@
+{
+  "title": "Sponsors",
+  "description": "We extend our heartfelt gratitude to all our sponsors who are going to contribute to making CCD 2024 Kolkata an unforgettable experience and helping us create a remarkable footprint in the tech industry. If you're interested in becoming a sponsor, please reach out to us for more information.",
+  "illustration": {
+    "src": "/images/elements/blocks-red.svg",
+    "alt": "Sponsors Illustration",
+    "width": 100,
+    "height": 100
+  },
+  "titleSponsors": [
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/gdev.3483c773.svg"
+    }
+  ],
+  "communityPartners": [
+    {
+      "name": "BBIT",
+      "link": "https://gdg.community.dev/gdg-on-campus-budge-budge-institute-of-technology-kolkata-india/"
+    },
+    {
+      "name": "Future Institute of Engineering & Management ",
+      "link": "https://gdg.community.dev/gdg-on-campus-future-institute-of-engineering-management-kolkata-india/"
+    },
+    {
+      "name": "Sister Nivedita University",
+      "link": "https://gdg.community.dev/gdg-on-campus-sister-nivedita-university-kolkata-india/"
+    },
+    {
+      "name": "Ideal Institute of Engineering",
+      "link": "https://gdg.community.dev/gdg-on-campus-ideal-institute-of-engineering-kalyani-india/"
+    },
+    {
+      "name": "GDG SILIGURI",
+      "logo": "/images/sponsors/communityPartners/GDG-SLG.png",
+      "link": "https://www.ieindia.org/webui/iei-Divisions.aspx"
+    },
+    {
+      "name": "IEI CSE",
+      "logo": "/images/sponsors/communityPartners/IEI-SC-CSE.png",
+      "link": "https://www.ieindia.org/webui/iei-Divisions.aspx"
+    },
+    {
+      "name": "OSSDC",
+      "logo": "/images/sponsors/communityPartners/OSSDC.jpg",
+      "link": "https://ossdc.org/"
+    },
+    {
+      "name": "Samarth TMSL",
+      "logo": "https://ccd2024.gdgcloudkol.org/assets/images/cp/samarth_tmsl.png",
+      "link": "https://www.tmsl.in/samarth/"
+    }
+  ],
+
+  "pastSponsors": [
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/apyhub.a45ccd6a.png"
+    },
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/dynopii.247e7757.png"
+    },
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/tg.dee73774.png"
+    },
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/wnb.204e4552.png"
+    }
+  ]
+}

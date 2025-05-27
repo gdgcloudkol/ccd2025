@@ -8,6 +8,7 @@ import CONTENT from "../public/content/home.json";
 import AboutFrame from "@/components/AboutFrame";
 import Highlights from "@/components/Highlights";
 import Link from "next/link";
+import Sponsors from "@/components/Sponsors";
 
 export default function HomePage() {
   return (
@@ -85,6 +86,12 @@ export default function HomePage() {
         <CallForSpeakers />
       </div>
       <Highlights />
+      <Sponsors/>
+        <SvgBand
+        reverse={true}
+        pauseOnHover={true}
+        className="bg-[#E84435]"
+      />
     </div>
   );
 }
