@@ -57,7 +57,7 @@ const Sponsors: React.FC = () => {
             <CardContainer
               headerTitle={
                 <span className="text-[14px] sm:text-lg lg:text-xl font-bold text-white dark:text-white">
-                  Co Powered By
+                  Brought To You By
                 </span>
               }
               maxWidth="max-w-4xl"
@@ -73,7 +73,7 @@ const Sponsors: React.FC = () => {
                       <div className="absolute inset-[1px] bg-white  rounded-lg p-3 flex items-center justify-center">
                         <img
                           src={sponsor.logo}
-                          alt="Co Powered By logo"
+                          alt="Brought To You By logo"
                           className="h-auto w-auto max-h-24 sm:max-h-20 object-contain hover:opacity-80 transition-opacity"
                         />
                       </div>
