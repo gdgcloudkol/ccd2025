@@ -1,0 +1,55 @@
+{
+  "title": "Sponsors",
+  "description": "We extend our heartfelt gratitude to all our sponsors who are going to contribute to making CCD 2024 Kolkata an unforgettable experience and helping us create a remarkable footprint in the tech industry. If you're interested in becoming a sponsor, please reach out to us for more information.",
+  "illustration": {
+    "src": "/images/elements/blocks-red.svg",
+    "alt": "Sponsors Illustration",
+    "width": 100,
+    "height": 100
+  },
+    "titleSponsors": [
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/gdev.3483c773.svg"
+    }
+  ],
+  "communityPartners": [
+    {
+      "logo": "/images/sponsors/communityPartners/GDGoC-BBIT.png"
+    },
+    {
+      "logo": "/images/sponsors/communityPartners/GDGoC-FIEM.jpg"
+    },
+    {
+      "logo": "/images/sponsors/communityPartners/GDGoC-IIE.png"
+    },
+    {
+      "logo": "/images/sponsors/communityPartners/GDGoC-SNU.png"
+    },
+    {
+      "logo": "/images/sponsors/communityPartners/IEI-SC-CSE.png"
+    },
+    {
+      "logo": "/images/sponsors/communityPartners/OSSDC.jpg"
+    },
+    {
+      "logo": "/images/sponsors/communityPartners/Samarth-TMSL-Color.png"
+    }
+  ],
+
+    "pastSponsors": [
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/apyhub.a45ccd6a.png"
+    },
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/dynopii.247e7757.png"
+    },
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/tg.dee73774.png"
+    },
+    {
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/wnb.204e4552.png"
+    }
+  ]
+
+}
+
