@@ -12,10 +12,25 @@
       "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/gdev.3483c773.svg"
     }
   ],
+    "silverSponsors": [
+    {
+      "name": "Weights & Biases",
+      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/wnb.204e4552.png",
+      "link": "https://wandb.ai/site/"
+    }
+  ],
   "communityPartners": [
+    {
+      "name": "Academy of Technology ",
+      "link": "https://gdg.community.dev/gdg-on-campus-academy-of-technology-hooghly-india/"
+    },
     {
       "name": "BBIT",
       "link": "https://gdg.community.dev/gdg-on-campus-budge-budge-institute-of-technology-kolkata-india/"
+    },
+    {
+      "name": "BENGAL INSTITUTE OF TECHNOLOGY",
+      "link": "https://gdg.community.dev/gdg-on-campus-bengal-institute-of-technology-kolkata-india/"
     },
     {
       "name": "Future Institute of Engineering & Management ",
@@ -30,9 +45,23 @@
       "link": "https://gdg.community.dev/gdg-on-campus-ideal-institute-of-engineering-kalyani-india/"
     },
     {
+      "name": "Meghnad Saha Institute of Technology ",
+      "link": "https://gdg.community.dev/gdg-on-campus-meghnad-saha-institute-of-technology-kolkata-india/"
+    },
+    {
       "name": "GDG SILIGURI",
       "logo": "/images/sponsors/communityPartners/GDG-SLG.png",
       "link": "https://www.ieindia.org/webui/iei-Divisions.aspx"
+    },
+    {
+      "name": "Hack4Bengal",
+      "logo": "https://ccd2024.gdgcloudkol.org/assets/images/cp/h4b.webp",
+      "link": "https://www.hack4bengal.tech/"
+    },
+    {
+      "name": "DevDotCom",
+      "logo": "https://www.devdotcom.in/_next/image?url=%2Flogo.png&w=96&q=75",
+      "link": "https://www.devdotcom.in/"
     },
     {
       "name": "IEI CSE",
@@ -53,13 +82,13 @@
 
   "pastSponsors": [
     {
-      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/apyhub.a45ccd6a.png"
+      "logo": "https://gdgcloudkol.org/ccd2023/images/communityPartners/wtm.png"
     },
     {
-      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/dynopii.247e7757.png"
+      "logo": "https://gdgcloudkol.org/ccd2023/images/communityPartners/tfug.png"
     },
     {
-      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/tg.dee73774.png"
+      "logo": "https://ccd2024.gdgcloudkol.org/assets/images/cp/iei_sc_cse_aot.jpg"
     },
     {
       "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/wnb.204e4552.png"

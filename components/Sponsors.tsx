@@ -7,6 +7,7 @@ const Sponsors: React.FC = () => {
     title,
     description,
     titleSponsors,
+    silverSponsors,
     communityPartners,
     pastSponsors,
     illustration,
@@ -56,7 +57,7 @@ const Sponsors: React.FC = () => {
             <CardContainer
               headerTitle={
                 <span className="text-[14px] sm:text-lg lg:text-xl font-bold text-white dark:text-white">
-                  Title Sponsor
+                  Co Powered By
                 </span>
               }
               maxWidth="max-w-4xl"
@@ -65,13 +66,58 @@ const Sponsors: React.FC = () => {
                 {titleSponsors.map((sponsor, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center p-2 sm:p-4"
+                    className="flex flex-col items-center justify-center h-32 sm:h-28 p-2"
                   >
-                    <img
-                      src={sponsor.logo}
-                      alt="Title Sponsor logo"
-                      className="h-12 sm:h-16 md:h-20 object-contain w-auto mb-2 sm:mb-3 hover:opacity-80 transition-opacity"
-                    />
+                    <div className="relative rounded-lg overflow-hidden w-full h-full">
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#ea4336] via-[#4285f4] to-[#34a853] rounded-lg"></div>
+                      <div className="absolute inset-[1px] bg-white  rounded-lg p-3 flex items-center justify-center">
+                        <img
+                          src={sponsor.logo}
+                          alt="Co Powered By logo"
+                          className="h-auto w-auto max-h-24 sm:max-h-20 object-contain hover:opacity-80 transition-opacity"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContainer>
+          </div>
+        )}
+        {/* Silver Sponsors */}
+        {silverSponsors && silverSponsors.length > 0 && (
+          <div className="mb-8 sm:mb-12 lg:mb-16">
+            <CardContainer
+              headerTitle={
+                <span className="text-[14px] sm:text-lg lg:text-xl font-bold text-white dark:text-white">
+                  Silver Sponsor
+                </span>
+              }
+              maxWidth="max-w-4xl"
+            >
+              <div className="grid grid-cols-1">
+                {silverSponsors.map((sponsor, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center justify-center h-32 sm:h-28 p-2"
+                  >
+                    <a
+                      href={sponsor.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full h-full"
+                    >
+                      <div className="relative rounded-lg overflow-hidden w-full h-full">
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#ea4336] via-[#4285f4] to-[#34a853] rounded-lg"></div>
+                        <div className="absolute inset-[1px] bg-white rounded-lg p-2 flex items-center justify-center">
+                          <img
+                            src={sponsor.logo}
+                            alt={`${sponsor.name || "Silver Sponsor"} logo`}
+                            className="h-auto w-auto max-h-24 sm:max-h-20 object-contain hover:opacity-80 transition-opacity"
+                          />
+                        </div>
+                      </div>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -97,16 +143,23 @@ const Sponsors: React.FC = () => {
                 >
                   {partner.logo ? (
                     // If logo is available, will be displayed with gradient border
-                    <div className="relative rounded-lg overflow-hidden w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#ea4336] via-[#4285f4] to-[#34a853] rounded-lg"></div>
-                      <div className="absolute inset-[1px] bg-white rounded-lg p-2.5 flex items-center justify-center">
-                        <img
-                          src={partner.logo}
-                          alt={`${partner.name || "Community Partner"} logo`}
-                          className="h-auto w-auto max-h-28 sm:max-h-24 object-contain hover:opacity-80 transition-opacity"
-                        />
+                    <a
+                      href={partner.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center w-full h-full"
+                    >
+                      <div className="relative rounded-lg overflow-hidden w-full h-full">
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#ea4336] via-[#4285f4] to-[#34a853] rounded-lg"></div>
+                        <div className="absolute inset-[1px] bg-white rounded-lg p-2.5 flex items-center justify-center">
+                          <img
+                            src={partner.logo}
+                            alt={`${partner.name || "Community Partner"} logo`}
+                            className="h-auto w-auto max-h-28 sm:max-h-24 object-contain hover:opacity-80 transition-opacity"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </a>
                   ) : (
                     // If no logo, created placeholder with GDGoC image and partner name with gradient border
                     <a
@@ -145,7 +198,7 @@ const Sponsors: React.FC = () => {
         </div>
 
         {/* Past Sponsors */}
-        {pastSponsors && pastSponsors.length > 0 && (
+        {pastSponsors && pastSponsors.length < 0 && (
           <div className="mb-8 sm:mb-12 lg:mb-16">
             <CardContainer
               headerTitle={
