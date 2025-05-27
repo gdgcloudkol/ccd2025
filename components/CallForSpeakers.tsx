@@ -58,6 +58,7 @@ export default function CallForSpeakers() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [speakersPerView, setSpeakersPerView] = useState(3);
   const [apiSpeakers, setApiSpeakers] = useState<SpeakerProps[]>([]);
+  const [allSpeakers, setAllSpeakers] = useState<SpeakerProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,10 +70,10 @@ export default function CallForSpeakers() {
     { src: "/images/elements/starOuter.svg", alt: "starOuter" },
   ];
 
-  // Speaker data from JSON (fallback)
-  const fallbackSpeakers = CONTENT.pastSpeakers;
+  // Speaker data from JSON (extended event speakers)
+  const extendedSpeakers = CONTENT.pastSpeakers;
 
-  // Fetch speakers from API
+  // Fetch speakers from API and combine with local speakers
   useEffect(() => {
     const fetchSpeakers = async () => {
       setIsLoading(true);
@@ -80,58 +81,51 @@ export default function CallForSpeakers() {
         const res = await fetch(
           "https://sessionize.com/api/v2/ilkj4hf0/view/Speakers"
         );
-        console.log(res);
-
         if (!res.ok) {
           throw new Error(`Failed to fetch speakers: ${res.status}`);
         }
 
         const data: ApiSpeaker[] = await res.json();
+        // console.log("Raw API speakers data:", data);
 
-        const filterIds = [
-          "7a5d302d-661e-4b56-b7c4-283f7208f371",
-          "c185e3ae-0cd9-49f5-bbb3-2a8d95636a9a",
-        ];
+        const formattedSpeakers: SpeakerProps[] = data.map((speaker) => {
+          let role = speaker.tagLine || "";
+          let company = "";
 
-        const filteredData = data.filter(
-          (speaker) => !filterIds.includes(speaker.id)
-        );
-
-        const formattedSpeakers: SpeakerProps[] = filteredData.map(
-          (speaker) => {
-            let role = speaker.tagLine || "";
-            let company = "";
-
-            if (role) {
-              const roleParts = role.split("@");
-              if (roleParts.length > 1) {
-                role = roleParts[0].trim();
-                company = roleParts[1].trim();
-              } else {
-                const atIndex = role.indexOf(" at ");
-                if (atIndex > -1) {
-                  company = role.substring(atIndex + 4);
-                  role = role.substring(0, atIndex);
-                }
+          if (role) {
+            const roleParts = role.split("@");
+            if (roleParts.length > 1) {
+              role = roleParts[0].trim();
+              company = roleParts[1].trim();
+            } else {
+              const atIndex = role.indexOf(" at ");
+              if (atIndex > -1) {
+                company = role.substring(atIndex + 4);
+                role = role.substring(0, atIndex);
               }
             }
-
-            return {
-              name: speaker.fullName,
-              role: role,
-              company: company,
-              image:
-                speaker.profilePicture || "/images/speakers/placeholder.svg",
-            };
           }
-        );
+
+          return {
+            name: speaker.fullName,
+            role: role,
+            company: company,
+            image: speaker.profilePicture || "/images/speakers/placeholder.svg",
+          };
+        });
 
         setApiSpeakers(formattedSpeakers);
+        
+        //  API speakers with extended event speakers
+        const combinedSpeakers = [...formattedSpeakers, ...extendedSpeakers];
+        // console.log("Combined speakers:", combinedSpeakers);
+        setAllSpeakers(combinedSpeakers);
+        
         setError(null);
       } catch (err) {
         console.error("Error fetching speakers:", err);
-        setError("Failed to load speakers from API. Using fallback data.");
-        setApiSpeakers(fallbackSpeakers);
+        setError("Failed to load speakers from API. Using extended event speakers only.");
+        setAllSpeakers(extendedSpeakers);
       } finally {
         setIsLoading(false);
       }
@@ -140,10 +134,7 @@ export default function CallForSpeakers() {
     fetchSpeakers();
   }, []);
 
-  //  API speakers if available, otherwise fallback to JSON data
-  const speakers = apiSpeakers.length > 0 ? apiSpeakers : fallbackSpeakers;
-
-  //  Speakers per view on initial render and resizing
+  // Speakers per view on initial render and resizing
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -162,18 +153,18 @@ export default function CallForSpeakers() {
   const handlePrev = () => {
     setCurrentIndex((prev) =>
       prev === 0
-        ? Math.max(0, speakers.length - speakersPerView)
+        ? Math.max(0, allSpeakers.length - speakersPerView)
         : Math.max(0, prev - speakersPerView)
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev + speakersPerView >= speakers.length ? 0 : prev + speakersPerView
+      prev + speakersPerView >= allSpeakers.length ? 0 : prev + speakersPerView
     );
   };
 
-  const visibleSpeakers = speakers.slice(
+  const visibleSpeakers = allSpeakers.slice(
     currentIndex,
     currentIndex + speakersPerView
   );
@@ -253,15 +244,10 @@ export default function CallForSpeakers() {
                   {isLoading
                     ? "Loading Speakers..."
                     : error
-                    ? "Past Speakers 2024"
+                    ? "Event Speakers"
                     : "Our Speakers"}
                   <hr className="mt-1 w-32 mx-auto border-[var(--color-border)]" />
                 </h2>
-                {error && (
-                  <p className="text-xs text-[var(--color-muted-foreground)]">
-                    Our Previous Speakers
-                  </p>
-                )}
               </div>
 
               <div className="relative">
@@ -289,7 +275,7 @@ export default function CallForSpeakers() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                       {visibleSpeakers.map((speaker, index) => (
                         <Speaker
-                          key={currentIndex + index}
+                          key={`${currentIndex}-${index}`}
                           name={speaker.name}
                           role={speaker.role}
                           company={speaker.company}
