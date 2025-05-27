@@ -2,7 +2,8 @@
 import AuthContent from "@/public/content/auth.json";
 import { ReactNode } from "react";
 import Layout from "../layout/Layout";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import path from "path";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -25,7 +26,7 @@ export default function AuthLayout({
   let title="Welcome to GDG Cloud Kolkata"
   let description= "You can reach out to us at anytime via  <a style=\"color:#4285f4\" href=\"mailto:gdgcloudkol@gmail.com\">gdgcloudkol@gmail.com</a>"
   const pathname= usePathname()
-
+  const searchParams= useSearchParams()
   if(pathname=="/login")
     {
       title=AuthContent.loginFormTitle
@@ -41,7 +42,11 @@ export default function AuthLayout({
       title=AuthContent.resetFormTitle
       description= AuthContent.signupFormDescription
     }
-
+if(pathname.includes('reset-password') && searchParams.get("onboarding")=='true')
+{
+  title="Set your password"
+  description= AuthContent.signupFormDescription
+}
 
   return (
     <Layout>

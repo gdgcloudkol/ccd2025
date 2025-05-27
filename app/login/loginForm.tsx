@@ -90,17 +90,7 @@ export default function LoginForm() {
             </LoadLink>
           </div>
         }
-        footer={
-          <p className="text-xs text-center">
-            Do not have an account?{" "}
-            <LoadLink
-              href="/signup"
-              className="text-google-blue hover:text-primary/80 transition-colors font-medium underline"
-            >
-              Create an account
-            </LoadLink>
-          </p>
-        }
+        
       />
     </div>
   );
