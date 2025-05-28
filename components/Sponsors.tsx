@@ -74,7 +74,7 @@ const Sponsors: React.FC = () => {
                         <img
                           src={sponsor.logo}
                           alt="Brought To You By logo"
-                          className="h-auto w-auto max-h-24 sm:max-h-20 object-contain hover:opacity-80 transition-opacity"
+                          className="h-auto w-auto max-h-24 sm:max-h-20 p-3 object-contain hover:opacity-80 transition-opacity"
                         />
                       </div>
                     </div>
@@ -135,7 +135,7 @@ const Sponsors: React.FC = () => {
             }
             maxWidth="max-w-4xl"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3">
               {communityPartners.map((partner, index) => (
                 <div
                   key={index}
@@ -155,7 +155,7 @@ const Sponsors: React.FC = () => {
                           <img
                             src={partner.logo}
                             alt={`${partner.name || "Community Partner"} logo`}
-                            className="h-auto w-auto max-h-28 sm:max-h-24 object-contain hover:opacity-80 transition-opacity"
+                            className={`h-auto w-auto max-h-28 sm:max-h-24 object-contain hover:opacity-80 transition-opacity ${partner.logo.includes("cv.png") ? "invert" : ""}`}
                           />
                         </div>
                       </div>
@@ -174,15 +174,15 @@ const Sponsors: React.FC = () => {
                           <img
                             src="/images/elements/GDGoC.png"
                             alt="GDG On Campus"
-                            className="h-10 sm:h-12 object-contain mb-1"
+                            className="lg:h-16 sm:h-24 object-contain mb-1"
                           />
                           <div className="flex items-center justify-center">
-                            <span className="text-[7px] text-google-blue font-medium">
+                            <span className="text-[12px] text-google-blue font-medium">
                               On Campus
                             </span>
                             <div className="flex items-center justify-center ml-1">
                               <div className="w-1 h-1 rounded-full bg-google-blue mx-1"></div>
-                              <span className="text-[7px] text-gray-800 dark:text-gray-500 font-medium line-clamp-1">
+                              <span className="text-[12px] text-gray-800 dark:text-gray-500 font-medium line-clamp-1">
                                 {partner.name}
                               </span>
                             </div>

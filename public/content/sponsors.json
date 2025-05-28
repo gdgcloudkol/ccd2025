@@ -9,19 +9,24 @@
   },
   "titleSponsors": [
     {
-      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/gdev.3483c773.svg"
+      "logo": "/images/sponsors/sponsors/gfd.png"
     }
   ],
-    "silverSponsors": [
+  "silverSponsors": [
     {
       "name": "Weights & Biases",
-      "logo": "https://ccd2024.gdgcloudkol.org/_next/static/media/wnb.204e4552.png",
+      "logo": "/images/sponsors/sponsors/wnb.png",
       "link": "https://wandb.ai/site/"
     }
   ],
   "communityPartners": [
     {
-      "name": "Academy of Technology ",
+      "name": "GDG SILIGURI",
+      "logo": "/images/sponsors/communityPartners/GDG-SLG.jpg",
+      "link": "https://gdg.community.dev/gdg-siliguri/"
+    },
+    {
+      "name": "Academy of Technology",
       "link": "https://gdg.community.dev/gdg-on-campus-academy-of-technology-hooghly-india/"
     },
     {
@@ -29,11 +34,11 @@
       "link": "https://gdg.community.dev/gdg-on-campus-budge-budge-institute-of-technology-kolkata-india/"
     },
     {
-      "name": "BENGAL INSTITUTE OF TECHNOLOGY",
+      "name": "Bengal Institute of Technology",
       "link": "https://gdg.community.dev/gdg-on-campus-bengal-institute-of-technology-kolkata-india/"
     },
     {
-      "name": "Future Institute of Engineering & Management ",
+      "name": "Future Institute of Engineering & Management",
       "link": "https://gdg.community.dev/gdg-on-campus-future-institute-of-engineering-management-kolkata-india/"
     },
     {
@@ -45,13 +50,17 @@
       "link": "https://gdg.community.dev/gdg-on-campus-ideal-institute-of-engineering-kalyani-india/"
     },
     {
-      "name": "Meghnad Saha Institute of Technology ",
+      "name": "Meghnad Saha Institute of Technology",
       "link": "https://gdg.community.dev/gdg-on-campus-meghnad-saha-institute-of-technology-kolkata-india/"
     },
     {
-      "name": "GDG SILIGURI",
-      "logo": "/images/sponsors/communityPartners/GDG-SLG.png",
-      "link": "https://www.ieindia.org/webui/iei-Divisions.aspx"
+      "name": "Indian Institute of Information Technology",
+      "link": "https://gdg.community.dev/gdg-on-campus-indian-institute-of-information-technology-kalyani-india/"
+    },
+    {
+      "name": "Code Vipassana",
+      "logo": "/images/sponsors/communityPartners/cv.png",
+      "link": "https://rsvp.withgoogle.com/events/cv"
     },
     {
       "name": "Hack4Bengal",
@@ -59,9 +68,29 @@
       "link": "https://www.hack4bengal.tech/"
     },
     {
-      "name": "DevDotCom",
-      "logo": "https://www.devdotcom.in/_next/image?url=%2Flogo.png&w=96&q=75",
-      "link": "https://www.devdotcom.in/"
+      "name": "FrostHacks",
+      "logo": "/images/sponsors/communityPartners/fh.png",
+      "link": "https://www.frosthacks.in/"
+    },
+    {
+      "name": "CodeNest",
+      "logo": "/images/sponsors/communityPartners/codenest.png",
+      "link": "https://codenestnshm.netlify.app/"
+    },
+    {
+      "name": "Friends of Figma",
+      "logo": "/images/sponsors/communityPartners/fof.png",
+      "link": "https://friends.figma.com/kolkata/"
+    },
+    {
+      "name": "KSUG.AI",
+      "logo": "/images/sponsors/communityPartners/ksug.png",
+      "link": "https://www.meetup.com/bangalore-kubernetes-meetup/"
+    },
+    {
+      "name": "Design Shots.AI",
+      "logo": "/images/sponsors/communityPartners/ds.png",
+      "link": "https://www.linkedin.com/company/designshots"
     },
     {
       "name": "IEI CSE",
@@ -77,9 +106,13 @@
       "name": "Samarth TMSL",
       "logo": "https://ccd2024.gdgcloudkol.org/assets/images/cp/samarth_tmsl.png",
       "link": "https://www.tmsl.in/samarth/"
+    },
+    {
+      "name": "DevDotCom",
+      "logo": "https://www.devdotcom.in/_next/image?url=%2Flogo.png&w=96&q=75",
+      "link": "https://www.devdotcom.in/"
     }
   ],
-
   "pastSponsors": [
     {
       "logo": "https://gdgcloudkol.org/ccd2023/images/communityPartners/wtm.png"
