@@ -34,7 +34,7 @@ const Sponsors: React.FC = () => {
 
           {/* Contact Button */}
           <a
-            href="mailto:gdgcloudkol@gmail.com"
+            href="mailto:partners@gdgcloudkol.org"
             className="inline-flex items-center bg-[var(--black)] text-[var(--white)] dark:bg-[var(--white)] dark:text-[var(--black)] px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base md:text-lg mt-2"
           >
             <img
@@ -42,7 +42,7 @@ const Sponsors: React.FC = () => {
               className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 dark:invert block"
               alt="gemini"
             />
-            gdgcloudkol@gmail.com
+            partners@gdgcloudkol.org
             <img
               src="/images/elements/gemini.svg"
               className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 dark:invert block"
