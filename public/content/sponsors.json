@@ -21,6 +21,16 @@
   ],
   "communityPartners": [
     {
+      "name": "Women Techmakers Kolkata",
+      "logo": "/images/sponsors/communityPartners/wtm.png",
+      "link": "https://developers.google.com/womentechmakers"
+    },
+    {
+      "name": "ML Kolkata",
+      "logo": "/images/sponsors/communityPartners/mlk.png",
+      "link": "https://www.linkedin.com/company/mlkolkata/?originalSubdomain=in"
+    },
+    {
       "name": "GDG SILIGURI",
       "logo": "/images/sponsors/communityPartners/GDG-SLG.jpg",
       "link": "https://gdg.community.dev/gdg-siliguri/"
@@ -64,7 +74,7 @@
     },
     {
       "name": "Hack4Bengal",
-      "logo": "https://ccd2024.gdgcloudkol.org/assets/images/cp/h4b.webp",
+      "logo": "/images/sponsors/communityPartners/h4b.png",
       "link": "https://www.hack4bengal.tech/"
     },
     {
@@ -93,8 +103,13 @@
       "link": "https://www.linkedin.com/company/designshots"
     },
     {
-      "name": "IEI CSE",
+      "name": "IEI Student Chapter CSE",
       "logo": "/images/sponsors/communityPartners/IEI-SC-CSE.png",
+      "link": "https://www.ieindia.org/webui/iei-Divisions.aspx"
+    },
+    {
+      "name": "IEI Student Chapter ECE",
+      "logo": "/images/sponsors/communityPartners/scece.png",
       "link": "https://www.ieindia.org/webui/iei-Divisions.aspx"
     },
     {
@@ -106,6 +121,11 @@
       "name": "Samarth TMSL",
       "logo": "https://ccd2024.gdgcloudkol.org/assets/images/cp/samarth_tmsl.png",
       "link": "https://www.tmsl.in/samarth/"
+    },
+    {
+      "name": "IIC TMSL",
+      "logo": "/images/sponsors/communityPartners/iictmsl.png",
+      "link": "https://www.tmsl.in/iic/"
     },
     {
       "name": "DevDotCom",
