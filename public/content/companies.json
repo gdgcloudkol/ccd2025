@@ -1,0 +1,70 @@
+[
+    {
+      "name": "Google",
+      "logo": "/images/logos/google.png"
+    },
+    {
+      "name": "Microsoft",
+      "logo": "/images/logos/microsoft.png"
+    },
+    {
+      "name": "Grafana Labs",
+      "logo": "/images/logos/grafana.png"
+    },
+    {
+      "name": "Cisco Systems",
+      "logo": "/images/logos/cisco.png"
+    },
+    {
+      "name": "Agno",
+      "logo": "/images/logos/agno.png"
+    },
+    {
+      "name": "GlobalLogic",
+      "logo": "/images/logos/globallogic.png"
+    },
+    {
+      "name": "Skcript Technologies Pvt. Ltd",
+      "logo": "/images/logos/skcript.png"
+    },
+    {
+      "name": "Genzeon",
+      "logo": "/images/logos/genzeon.png"
+    },
+    {
+      "name": "PatternAI",
+      "logo": "/images/logos/patternai.png"
+    },
+    {
+      "name": "Lloyds Banking Group",
+      "logo": "/images/logos/lloyds.png"
+    },
+    {
+      "name": "Mavarick AI",
+      "logo": "/images/logos/mavarick.png"
+    },
+    {
+      "name": "Platform9 Systems",
+      "logo": "/images/logos/platform9.png"
+    },
+    {
+      "name": "Headout",
+      "logo": "/images/logos/headout.png"
+    },
+    {
+      "name": "Gradus",
+      "logo": "/images/logos/gradus.png"
+    },
+    {
+      "name": "66Degrees",
+      "logo": "/images/logos/66degrees.png"
+    },
+    {
+      "name": "Weights & Biases",
+      "logo": "/images/logos/wandb.png"
+    },
+    {
+      "name": "NVIDIA",
+      "logo": "/images/logos/nvidia.png"
+    }
+  ]

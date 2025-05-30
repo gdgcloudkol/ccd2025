@@ -203,15 +203,15 @@ export default function CallForSpeakers() {
                     {CONTENT.cfsText}
                   </p>
                   <Link
-                    href={CONTENT.cfsLink}
-                    className="inline-flex items-center gap-2 bg-[var(--color-foreground)] text-[var(--color-background)] px-6 py-3 rounded-full font-medium"
+                    href={'#'}
+                    className="inline-flex items-center gap-2 bg-google-red text-[var(--color-background)] px-6 py-3 rounded-full font-medium"
                   >
                     <img
                       src="/images/elements/gemini.svg"
                       className="mr-1 w-4 h-4 dark:invert"
                       alt="gemini"
                     />
-                    Apply Now
+                    CFS Closed
                     <img
                       src="/images/elements/gemini.svg"
                       className="ml-1 w-4 h-4 dark:invert"
