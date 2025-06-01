@@ -1,70 +1,70 @@
 [
     {
       "name": "Google",
-      "logo": "/images/logos/google.png"
+      "logo": "/images/logos/google.webp"
     },
     {
       "name": "Microsoft",
-      "logo": "/images/logos/microsoft.png"
+      "logo": "/images/logos/microsoft.webp"
     },
     {
       "name": "Grafana Labs",
-      "logo": "/images/logos/grafana.png"
+      "logo": "/images/logos/grafana.webp"
     },
     {
       "name": "Cisco Systems",
-      "logo": "/images/logos/cisco.png"
+      "logo": "/images/logos/cisco.webp"
     },
     {
       "name": "Agno",
-      "logo": "/images/logos/agno.png"
+      "logo": "/images/logos/agno.webp"
     },
     {
       "name": "GlobalLogic",
-      "logo": "/images/logos/globallogic.png"
+      "logo": "/images/logos/globallogic.webp"
     },
     {
       "name": "Skcript Technologies Pvt. Ltd",
-      "logo": "/images/logos/skcript.png"
+      "logo": "/images/logos/skcript.webp"
     },
     {
       "name": "Genzeon",
-      "logo": "/images/logos/genzeon.png"
+      "logo": "/images/logos/genzeon.webp"
     },
     {
       "name": "PatternAI",
-      "logo": "/images/logos/patternai.png"
+      "logo": "/images/logos/patternai.webp"
     },
     {
       "name": "Lloyds Banking Group",
-      "logo": "/images/logos/lloyds.png"
+      "logo": "/images/logos/lloyds.webp"
     },
     {
       "name": "Mavarick AI",
-      "logo": "/images/logos/mavarick.png"
+      "logo": "/images/logos/mavarick.webp"
     },
     {
       "name": "Platform9 Systems",
-      "logo": "/images/logos/platform9.png"
+      "logo": "/images/logos/platform9.webp"
     },
     {
       "name": "Headout",
-      "logo": "/images/logos/headout.png"
+      "logo": "/images/logos/headout.webp"
     },
     {
       "name": "Gradus",
-      "logo": "/images/logos/gradus.png"
+      "logo": "/images/logos/gradus.webp"
     },
     {
       "name": "66Degrees",
-      "logo": "/images/logos/66degrees.png"
+      "logo": "/images/logos/66degrees.webp"
     },
     {
       "name": "Weights & Biases",
-      "logo": "/images/logos/wandb.png"
+      "logo": "/images/logos/wandb.webp"
     },
     {
       "name": "NVIDIA",
-      "logo": "/images/logos/nvidia.png"
+      "logo": "/images/logos/nvidia.webp"
     }
   ]

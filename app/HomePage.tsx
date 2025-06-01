@@ -10,7 +10,8 @@ import Highlights from "@/components/Highlights";
 import Link from "next/link";
 import Sponsors from "@/components/Sponsors";
 import CompanyLogos from "@/components/SpeakerCompanies";
-import LogoData from '../public/content/companies.json'
+import SpeakerCompaniesSection from "@/components/SpeakerCompanies";
+
 
 export default function HomePage() {
   return (
@@ -73,9 +74,9 @@ export default function HomePage() {
         </div>
       </section>
       <AboutFrame />
-      {/* <div className="w-full max-w-5xl mx-auto">
-      <CompanyLogos variant="grid" data={LogoData}/>
-      </div> */}
+      <div className="w-full max-w-5xl mx-auto">
+      <SpeakerCompaniesSection variant="grid" />
+      </div>
       <SvgBand
         reverse={true}
         pauseOnHover={true}

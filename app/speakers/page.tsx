@@ -5,6 +5,7 @@ import { ContentParagraph } from "@/components/ui/PageContentParagraph";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 import speakersData from "../../public/content/speakers.json";
+import SpeakerCompaniesSection from "@/components/SpeakerCompanies";
 export default function Speakers() {
 
 
@@ -37,8 +38,8 @@ export default function Speakers() {
                         height={speakerData.illustration.height}
                     />
 
-
-                    <CallForSpeakers />
+                    <SpeakerCompaniesSection variant="marquee"/>
+                    {/* <CallForSpeakers /> */}
                 </div>
             </div>
         </div>
