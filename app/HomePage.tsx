@@ -14,7 +14,6 @@ import LogoData from "../public/content/companies.json";
 import { useTheme } from "next-themes";
 
 export default function HomePage() {
-  // Update these lines at the beginning of your component
   const [backgroundOpacity, setBackgroundOpacity] = useState(35);
   const [prevTheme, setPrevTheme] = useState<string | undefined>(undefined);
   const { theme } = useTheme();
