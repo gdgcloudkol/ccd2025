@@ -14,7 +14,7 @@ import LogoData from "../public/content/companies.json";
 import { useTheme } from "next-themes";
 
 export default function HomePage() {
-  const [backgroundOpacity, setBackgroundOpacity] = useState(35);
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   const [prevTheme, setPrevTheme] = useState<string | undefined>(undefined);
   const { theme } = useTheme();
 
@@ -35,7 +35,7 @@ export default function HomePage() {
 
         // Reset opacity to 35 after 5 seconds
         const timer = setTimeout(() => {
-          setBackgroundOpacity(35);
+          setBackgroundOpacity(0);
         }, 12000);
         return () => clearTimeout(timer);
       }
