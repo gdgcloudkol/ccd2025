@@ -3,20 +3,59 @@
 import CallForSpeakers from "@/components/CallForSpeakers";
 import HeroSection2 from "@/components/HeroSection2";
 import SvgBand from "@/components/SvgBand";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CONTENT from "../public/content/home.json";
 import AboutFrame from "@/components/AboutFrame";
 import Highlights from "@/components/Highlights";
 import Link from "next/link";
 import Sponsors from "@/components/Sponsors";
 import CompanyLogos from "@/components/SpeakerCompanies";
-import LogoData from '../public/content/companies.json'
+import LogoData from "../public/content/companies.json";
+import { useTheme } from "next-themes";
 
 export default function HomePage() {
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0);
+  const [prevTheme, setPrevTheme] = useState<string | undefined>(undefined);
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    if (theme !== undefined) {
+      if (prevTheme === undefined) {
+        setPrevTheme(theme);
+        return;
+      }
+
+      if (prevTheme !== theme) {
+        // Increment opacity when theme changes
+        const increment = 15;
+        const currentOpacity = backgroundOpacity;
+        const targetOpacity = Math.min(currentOpacity + increment, 100);
+        setBackgroundOpacity(targetOpacity);
+        setPrevTheme(theme);
+
+        // Reset opacity to 35 after 5 seconds
+        const timer = setTimeout(() => {
+          setBackgroundOpacity(0);
+        }, 12000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [theme]);
+
   return (
     <div className="relative">
       {/* Hero Section */}
       <section className="min-h-screen xl:min-h-[110dvh] flex flex-col justify-center items-center text-center px-4 pt-20 pb-32 relative dark:bg-[var(--black)]">
+        {/* Background text with dynamic opacity */}
+        <div
+          className="fixed top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none z-50"
+          style={{ opacity: backgroundOpacity / 100 }}
+        >
+          <span className="text-3xl md:text-4xl lg:text-8xl font-black text-gray-200 dark:text-gray-900 select-all">
+            {CONTENT.couponCode}
+          </span>
+        </div>
+
         <div className="container mx-auto z-10 relative xl:-mt-10">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-[var(--foreground)] dark:text-[var(--white)]">
             Cloud Community
@@ -72,6 +111,8 @@ export default function HomePage() {
           />
         </div>
       </section>
+
+      {/* Rest of your components remain unchanged */}
       <AboutFrame />
       {/* <div className="w-full max-w-5xl mx-auto">
       <CompanyLogos variant="grid" data={LogoData}/>
@@ -91,12 +132,8 @@ export default function HomePage() {
         <CallForSpeakers />
       </div>
       <Highlights />
-      <Sponsors/>
-        <SvgBand
-        reverse={true}
-        pauseOnHover={true}
-        className="bg-[#E84435]"
-      />
+      <Sponsors />
+      <SvgBand reverse={true} pauseOnHover={true} className="bg-[#E84435]" />
     </div>
   );
 }
