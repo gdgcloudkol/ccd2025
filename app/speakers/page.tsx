@@ -6,42 +6,49 @@ import { PageHeader } from "@/components/ui/PageHeader";
 
 import speakersData from "../../public/content/speakers.json";
 import SpeakerCompaniesSection from "@/components/SpeakerCompanies";
+import SpeakersSection from "@/components/SpeakersSection";
+
 export default function Speakers() {
+  interface SpeakerData {
+    title: string;
+    description: string;
+    illustration: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    };
+  }
+  const speakerData = speakersData as SpeakerData;
 
+  return (
+    <Layout>
+      <div className="container mx-auto px-4 md:px-12 py-14 relative z-10">
+        <div className="min-h-screen overflow-hidden">
+          <div className="">
+            <PageHeader>{speakerData.title}</PageHeader>
 
-    interface SpeakerData {
-        title: string;
-        description: string;
-        illustration: {
-            src: string;
-            alt: string;
-            width: number;
-            height: number;
-        };
-    }
-    const speakerData = speakersData as SpeakerData;
+            <ContentParagraph className="text-base py-2">
+              {speakerData.description}
+            </ContentParagraph>
 
-    return <Layout>
-        <div className="container mx-auto px-4 md:px-12 py-14 relative z-10">
-            <div className="min-h-screen overflow-hidden">
-                <div className="">
-                    <PageHeader>{speakerData.title}</PageHeader>
+            <HrWithImage
+              src={speakerData.illustration.src}
+              alt={speakerData.illustration.alt}
+              width={speakerData.illustration.width}
+              height={speakerData.illustration.height}
+            />
 
-                    <ContentParagraph className="text-base py-2">
-                        {speakerData.description}
-                    </ContentParagraph>
-
-                    <HrWithImage
-                        src={speakerData.illustration.src}
-                        alt={speakerData.illustration.alt}
-                        width={speakerData.illustration.width}
-                        height={speakerData.illustration.height}
-                    />
-
-                    <SpeakerCompaniesSection variant="marquee"/>
-                    {/* <CallForSpeakers /> */}
-                </div>
+            {/* Add code here and don't delete any existing code */}
+            <div hidden>
+              <SpeakerCompaniesSection variant="marquee" />
             </div>
+            {/* <CallForSpeakers /> */}
+
+            <SpeakersSection />
+          </div>
         </div>
+      </div>
     </Layout>
+  );
 }
