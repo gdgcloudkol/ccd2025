@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronsDown, ChevronsUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 interface Speaker {
@@ -22,6 +23,7 @@ const SpeakersSection: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [dialogSpeaker, setDialogSpeaker] = useState<Speaker | null>(null);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSpeakers = async () => {
@@ -98,74 +100,135 @@ const SpeakersSection: React.FC = () => {
       ) : error ? (
         <div className="text-center text-red-500 py-8">{error}</div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {speakers.map((speaker) => (
             <div
               key={speaker.id}
-              className="rounded-xl border border-black/80 bg-white flex flex-col p-0 overflow-hidden min-h-[180px]"
-              style={{ boxShadow: "0 0 0 1.5px #000" }}
+              className="bg-gradient-to-r from-[#ea4336] via-[#4285f4] to-[#34a853] rounded-2xl p-[2px] flex flex-col min-h-[180px]"
             >
-              <div className="flex items-center justify-between bg-[#101828] px-4 py-2">
-                <span className="text-white text-base font-medium">
-                  Speaker
-                </span>
-                <img
-                  src="/images/elements/resources-speaker.svg"
-                  alt=""
-                  className="w-5 h-5 dark:invert"
-                />
-              </div>
-              <div className="flex flex-row items-center gap-4 px-4 py-4">
-                <div
-                  className="w-40 h-40 rounded-lg bg-gray-200 flex-shrink-0 bg-center bg-cover border-2 border-black/80"
-                  style={{ backgroundImage: `url(${speaker.profilePicture})` }}
-                />
-                <div className="flex-1 flex flex-col justify-between min-w-0 h-full">
-                  <div>
-                    <div className="text-lg font-semibold text-black mb-1 truncate">
-                      {speaker.fullName}
+              <div className="flex flex-col flex-1 bg-white rounded-2xl overflow-hidden">
+                <div className="flex items-center justify-between bg-gradient-to-r from-[#ea4336] via-[#4285f4] to-[#34a853] px-4 py-2">
+                  <span className="text-white text-base font-medium">
+                    Speaker
+                  </span>
+                  <img
+                    src="/images/elements/resources-speaker.svg"
+                    alt=""
+                    className="w-5 h-5 dark:invert"
+                  />
+                </div>
+                <div className="flex flex-col md:flex-row items-center gap-1 md:gap-4 md:p-4 pt-4 rounded-t-2xl">
+                  <div
+                    className="w-40 h-40 rounded-lg bg-gray-200 flex-shrink-0 bg-center bg-cover border-2 border-black/80 mb-4 md:mb-0"
+                    style={{
+                      backgroundImage: `url(${speaker.profilePicture})`,
+                    }}
+                  />
+                  <div className="flex-1 flex flex-col min-w-0 h-full w-full justify-between">
+                    {/* Desktop text content: name, tagline, bio */}
+                    <div className="hidden md:block text-left">
+                      <div className="text-lg font-semibold text-black mb-1 truncate">
+                        {speaker.fullName}
+                      </div>
+                      <div className="text-sm text-gray-700 mb-1 truncate">
+                        {speaker.tagLine}
+                      </div>
+                      <div className="text-sm text-gray-500 mb-1 flex items-end">
+                        <div className="line-clamp-2 overflow-hidden max-w-full ">
+                          {speaker.bio}
+                        </div>
+                        {speaker.bio && (
+                          <button
+                            className="text-blue-600 text-xs underline whitespace-nowrap flex-shrink-0 mb-1 md:inline-block hidden cursor-pointer"
+                            onClick={() => setDialogSpeaker(speaker)}
+                          >
+                            Read more
+                          </button>
+                        )}
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-700 mb-1 truncate">
-                      {speaker.tagLine}
+                    {/* Mobile text content (unchanged) */}
+                    <div className="md:hidden">
+                      <div className="text-lg font-semibold text-black mb-1 truncate text-center">
+                        {speaker.fullName}
+                      </div>
+                      <div className="text-sm text-gray-700 mb-1 truncate text-center">
+                        {speaker.tagLine}
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-500 mb-2 flex items-center">
+                    {/* Mobile social icons (with border) - below tagline, above bio */}
+                    <div className="flex flex-row items-center gap-2 mt-1 mb-2 justify-center md:hidden">
+                      {speaker.links &&
+                        speaker.links.map((link) =>
+                          link.linkType === "LinkedIn" ||
+                          link.linkType === "Twitter" ||
+                          link.linkType === "X" ? (
+                            <a
+                              key={link.url}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center border-2 border-black/80 rounded-full p-1"
+                            >
+                              <img
+                                src={socialIcon(link.linkType) || ""}
+                                alt={link.linkType}
+                                className="w-4 h-4"
+                              />
+                            </a>
+                          ) : null
+                        )}
+                    </div>
+                    {/* Mobile bio section (sm and below) */}
+                    <div className="md:hidden bg-gray-200 p-2 pr-0 flex flex-col items-center justify-between rounded-t-xl">
                       <div
-                        className="line-clamp-1"
-                        style={{ maxWidth: "100%" }}
+                        className={`max-w-full text-black/50 transition-all duration-300 overflow-hidden ${
+                          expandedMobile === speaker.id
+                            ? "max-h-96"
+                            : "max-h-12 line-clamp-2"
+                        }`}
                       >
                         {speaker.bio}
                       </div>
-                      {speaker.bio && (
+                      {expandedMobile === speaker.id ? (
                         <button
-                          className="ml-2 text-blue-600 text-xs underline whitespace-nowrap"
-                          onClick={() => setDialogSpeaker(speaker)}
+                          className="text-blue-600 text-xs underline whitespace-nowrap flex-shrink-0"
+                          onClick={() => setExpandedMobile(null)}
                         >
-                          Read more
+                          <ChevronsUp className="bg-black text-white w-10 h-6 rounded-full mt-1" />
+                        </button>
+                      ) : (
+                        <button
+                          className="text-blue-600 text-xs underline whitespace-nowrap flex-shrink-0"
+                          onClick={() => setExpandedMobile(speaker.id)}
+                        >
+                          <ChevronsDown className="bg-black text-white w-10 h-6 rounded-full mt-1" />
                         </button>
                       )}
                     </div>
-                  </div>
-                  <div className="flex flex-row items-center gap-2 mt-1 mb-4">
-                    {speaker.links &&
-                      speaker.links.map((link) =>
-                        link.linkType === "LinkedIn" ||
-                        link.linkType === "Twitter" ||
-                        link.linkType === "X" ? (
-                          <a
-                            key={link.url}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center"
-                          >
-                            <img
-                              src={socialIcon(link.linkType) || ""}
-                              alt={link.linkType}
-                              className="w-5 h-5"
-                            />
-                          </a>
-                        ) : null
-                      )}
+                    {/* Desktop social icons (no border) - always below bio */}
+                    <div className="hidden md:flex flex-row items-center gap-2 mt-1 mb-4">
+                      {speaker.links &&
+                        speaker.links.map((link) =>
+                          link.linkType === "LinkedIn" ||
+                          link.linkType === "Twitter" ||
+                          link.linkType === "X" ? (
+                            <a
+                              key={link.url}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center"
+                            >
+                              <img
+                                src={socialIcon(link.linkType) || ""}
+                                alt={link.linkType}
+                                className="w-4 h-4"
+                              />
+                            </a>
+                          ) : null
+                        )}
+                    </div>
                   </div>
                 </div>
               </div>

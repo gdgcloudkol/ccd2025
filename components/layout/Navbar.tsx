@@ -171,13 +171,6 @@ export default function Navbar() {
                 Schedule
               </LoadLink>
               <LoadLink
-                href="/speakers"
-                className="text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Speakers
-              </LoadLink>
-              <LoadLink
                 href="/team"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
