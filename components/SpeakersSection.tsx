@@ -152,7 +152,7 @@ const SpeakersSection: React.FC = () => {
                       <div className="text-lg font-semibold text-black mb-1 truncate text-center">
                         {speaker.fullName}
                       </div>
-                      <div className="text-sm text-gray-700 mb-1 truncate text-center">
+                      <div className="text-sm text-gray-700 mb-1 md:truncate text-center px-2">
                         {speaker.tagLine}
                       </div>
                     </div>
@@ -180,7 +180,7 @@ const SpeakersSection: React.FC = () => {
                         )}
                     </div>
                     {/* Mobile bio section (sm and below) */}
-                    <div className="md:hidden bg-gray-200 p-2 pr-0 flex flex-col items-center justify-between rounded-t-xl">
+                    <div className="md:hidden bg-gray-200 p-4  px-4 flex flex-col items-center justify-between rounded-t-xl">
                       <div
                         className={`max-w-full text-black/50 transition-all duration-300 overflow-hidden ${
                           expandedMobile === speaker.id
@@ -247,11 +247,12 @@ const SpeakersSection: React.FC = () => {
             >
               &times;
             </button>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ">
               <div
-                className="w-32 h-32 rounded-lg bg-gray-200 bg-center bg-cover border-2 border-black/80 mb-4"
+                className="size-32 rounded-lg bg-gray-200 bg-center bg-cover border-2 border-black/80 mb-4"
                 style={{
                   backgroundImage: `url(${dialogSpeaker.profilePicture})`,
+                  backgroundSize:'cover'
                 }}
               />
               <div className="text-xl font-bold mb-1 text-center">
@@ -260,8 +261,10 @@ const SpeakersSection: React.FC = () => {
               <div className="text-base text-gray-700 mb-2 text-center">
                 {dialogSpeaker.tagLine}
               </div>
-              <div className="text-gray-600 text-center whitespace-pre-line">
+              <div className="max-h-[40dvh] overflow-y-scroll">
+              <div className="text-gray-600 text-center whitespace-pre-line ">
                 {dialogSpeaker.bio}
+              </div>
               </div>
             </div>
           </div>
