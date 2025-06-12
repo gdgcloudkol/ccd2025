@@ -43,15 +43,15 @@ import { useSession } from "next-auth/react";
 type FormValues = {
   firstName: string;
   lastName: string;
-  email: string;
+  email?: string;
   company?: string;
-  role: string;
+  role?: string;
   pronoun?: string;
   phone?: string;
   college?: string;
   course?: string;
   graduation_year?: number;
-  student: boolean;
+  student?: boolean;
   twitter?: string;
   linkedin?: string;
   github?: string;
@@ -114,7 +114,7 @@ export default function ProfileCard({
         { message: "Invalid GitHub URL" }
       )
       .optional(),
-  }) as z.ZodType<FormValues>;
+  });
 
   const form = useForm<FormValues, unknown, FormValues>({
     resolver: zodResolver(formSchema),
