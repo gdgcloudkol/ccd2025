@@ -1,0 +1,10 @@
+{
+  "title": "About Cloud Community Day",
+  "description": "Cloud Community Day is the flagship annual gathering of cloud professionals, developers, architects, DevOps engineers, and enthusiasts from across the globe. Hosted by the GDG Cloud Kolkata, this event brings together thought leaders, pioneers, and practitioners to share insights, trends, and innovations shaping the future of computing.",
+  "illustration": {
+    "src": "/images/elements/green_block_full.png",
+    "alt": "About Cloud Community Day",
+    "width": 200,
+    "height": 200
+  }
+} 

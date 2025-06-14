@@ -1,0 +1,10 @@
+{
+  "title": "Event Schedule",
+  "description": "Explore the complete agenda for CCD 2025. Join us for exciting sessions, workshops, and networking opportunities across multiple halls.",
+  "illustration": {
+    "src": "/images/elements/green_block_full.png",
+    "alt": "Event Schedule",
+    "width": 300,
+    "height": 300
+  }
+} 
