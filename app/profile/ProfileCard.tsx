@@ -39,6 +39,7 @@ import { Switch } from "@/components/ui/switch";
 import { UserProfile } from "@/types/login";
 import { SubmitHandler } from "react-hook-form";
 import { useSession } from "next-auth/react";
+import MakeAFrame from "./MakeAFrame";
 
 type FormValues = {
   firstName: string;
@@ -300,13 +301,13 @@ export default function ProfileCard({
 
           {/* Navigation tabs */}
           <div className="mb-8 flex flex-wrap gap-2 sm:gap-6">
-            {["My Profile", "Points", "Leaderboard"].map((tab) => (
+            {["My Profile", "Points", "Leaderboard","Make A Frame"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
+                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors border border-yellow-300 ${
                   activeTab === tab
-                    ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white"
+                    ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white border-0"
                     : "text-[#676c72] hover:text-[#000000] dark:text-[#e5e7eb] dark:hover:text-white"
                 }`}
               >
@@ -642,6 +643,7 @@ export default function ProfileCard({
           {activeTab === "Points" && <Points />}
 
           {activeTab === "Leaderboard" && <LeaderBoard />}
+           {activeTab === "Make A Frame" && <MakeAFrame />}
         </div>
       </CardContainer>
     </div>
