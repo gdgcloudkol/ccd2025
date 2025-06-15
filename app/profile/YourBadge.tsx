@@ -105,11 +105,28 @@ const YourBadge = () => {
         return;
       }
 
-      const hRatio = canvas.width / image.width;
-      const vRatio = canvas.height / image.height;
+      // Create a clipping path for the square frame area
+      // This ensures the image only appears within the frame boundaries
+      ctx.save();
+      
+      // Define the clipping area - adjust these values based on your SVG frame
+      // You may need to adjust these margins to match your actual frame design
+      const margin = 5; // Reduced margin for better fit
+      const clipX = margin;
+      const clipY = margin;
+      const clipWidth = canvas.width - (margin * 2);
+      const clipHeight = canvas.height - (margin * 2);
+      
+      ctx.beginPath();
+      ctx.rect(clipX, clipY, clipWidth, clipHeight);
+      ctx.clip();
+
+      const hRatio = clipWidth / image.width;
+      const vRatio = clipHeight / image.height;
       const ratio = Math.max(hRatio, vRatio);
-      const x = (canvas.width - image.width * ratio) / 2;
-      const y = (canvas.height - image.height * ratio) / 2;
+      const x = clipX + (clipWidth - image.width * ratio) / 2;
+      const y = clipY + (clipHeight - image.height * ratio) / 2;
+      
       ctx.drawImage(
         image,
         0,
@@ -121,6 +138,8 @@ const YourBadge = () => {
         image.width * ratio,
         image.height * ratio
       );
+      
+      ctx.restore();
     },
     [image]
   );
@@ -376,8 +395,7 @@ const YourBadge = () => {
                           : "Drag and Drop - Choose Image"}
                       </p>
                       <p className="text-[#676c72] text-sm mt-1">
-                        Upload your profile picture and generate a social media
-                        badge for the cloud community day 2025.
+                          For best results use a 1:1 ratio picture
                       </p>
                     </div>
                   </div>
@@ -477,7 +495,7 @@ const YourBadge = () => {
                       <canvas
                         ref={circleCanvasRef}
                         className="w-full rounded-full shadow-lg border border-border transition-transform duration-300 group-hover:scale-[1.02]"
-                      />
+                      />      
                     </div>
                   </div>
                 </div>
