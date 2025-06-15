@@ -267,3 +267,8 @@
     #faab00 126.11%
   );
 }
+
+.no-scrollbar{
+  scrollbar-width: 0;
+  scrollbar-color: transparent;
+}
