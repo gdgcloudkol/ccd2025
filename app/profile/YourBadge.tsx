@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 
 type FrameType = "attendee" | "team" | "speaker";
 
-const YourBadge = () => {
+const YourFrame = () => {
   const squareCanvasRef = useRef<HTMLCanvasElement>(null);
   const circleCanvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -86,7 +86,7 @@ const YourBadge = () => {
     []
   );
 
-  const drawSquareBadge = useCallback(
+  const drawSquareFrame = useCallback(
     (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
       canvas.width = 500;
       canvas.height = 500;
@@ -144,7 +144,7 @@ const YourBadge = () => {
     [image]
   );
 
-  const drawCircleBadge = useCallback(
+  const drawCircleFrame = useCallback(
     (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
       canvas.width = 500;
       canvas.height = 500;
@@ -196,8 +196,8 @@ const YourBadge = () => {
     [image]
   );
 
-  const drawBadges = useCallback(() => {
-    // Draw square badge
+  const drawFrames = useCallback(() => {
+    // Draw square Frame
     const squareCanvas = squareCanvasRef.current;
     if (squareCanvas) {
       const ctx = squareCanvas.getContext("2d");
@@ -208,8 +208,8 @@ const YourBadge = () => {
         banner.src = `/images/frames/${frameType}-square.svg`;
         banner.crossOrigin = "anonymous";
 
-        const drawSquareFrame = () => {
-          drawSquareBadge(ctx, squareCanvas);
+        const drawSquareFrameWithBanner = () => {
+          drawSquareFrame(ctx, squareCanvas);
           if (banner.complete && banner.naturalWidth > 0) {
             const height = (banner.height / banner.width) * squareCanvas.width;
             const y = squareCanvas.height - height;
@@ -227,13 +227,13 @@ const YourBadge = () => {
           }
         };
 
-        banner.onload = drawSquareFrame;
-        banner.onerror = () => drawSquareBadge(ctx, squareCanvas);
-        if (banner.complete) drawSquareFrame();
+        banner.onload = drawSquareFrameWithBanner;
+        banner.onerror = () => drawSquareFrame(ctx, squareCanvas);
+        if (banner.complete) drawSquareFrameWithBanner();
       }
     }
 
-    // Draw circle badge
+    // Draw circle Frame
     const circleCanvas = circleCanvasRef.current;
     if (circleCanvas) {
       const ctx = circleCanvas.getContext("2d");
@@ -244,8 +244,8 @@ const YourBadge = () => {
         banner.src = `/images/frames/${frameType}-circle.svg`;
         banner.crossOrigin = "anonymous";
 
-        const drawCircleFrame = () => {
-          drawCircleBadge(ctx, circleCanvas);
+        const drawCircleFrameWithBanner = () => {
+          drawCircleFrame(ctx, circleCanvas);
           if (banner.complete && banner.naturalWidth > 0) {
             ctx.save();
             ctx.globalCompositeOperation = "source-over";
@@ -266,25 +266,25 @@ const YourBadge = () => {
           }
         };
 
-        banner.onload = drawCircleFrame;
-        banner.onerror = () => drawCircleBadge(ctx, circleCanvas);
-        if (banner.complete) drawCircleFrame();
+        banner.onload = drawCircleFrameWithBanner;
+        banner.onerror = () => drawCircleFrame(ctx, circleCanvas);
+        if (banner.complete) drawCircleFrameWithBanner();
       }
     }
-  }, [frameType, drawSquareBadge, drawCircleBadge]);
+  }, [frameType, drawSquareFrame, drawCircleFrame]);
 
   useEffect(() => {
-    drawBadges();
-  }, [drawBadges]);
+    drawFrames();
+  }, [drawFrames]);
 
-  const downloadBadge = useCallback(
+  const downloadFrame = useCallback(
     (type: "square" | "circle") => {
       const canvas =
         type === "square" ? squareCanvasRef.current : circleCanvasRef.current;
       if (!canvas) return;
 
       const link = document.createElement("a");
-      link.download = `ccd2025-${frameType}-${type}-badge.png`;
+      link.download = `ccd2025-${frameType}-${type}-Frame.png`;
       link.href = canvas.toDataURL("image/png", 0.9);
       document.body.appendChild(link);
       link.click();
@@ -352,11 +352,11 @@ const YourBadge = () => {
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="flex-1">
                     <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      GCCD'25 Kolkata Badge
+                      GCCD'25 Kolkata Frame
                     </h1>
                     <p className="text-sm md:text-base text-muted-foreground max-w-2xl">
                       Upload your profile picture and generate a social media
-                      badge for Cloud Community Day 2025
+                      Frame for Cloud Community Day 2025
                     </p>
                   </div>
                   <div className="flex-shrink-0 flex justify-center md:justify-end">
@@ -411,24 +411,24 @@ const YourBadge = () => {
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-bold mb-4">Preview Badge</h4>
+                <h4 className="text-lg font-bold mb-4">Preview Frame</h4>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Square Badge Preview */}
+                {/* Square Frame Preview */}
                 <div className="border border-border rounded-lg bg-background p-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <img
                         src={`/images/elements/legal.svg`}
-                        alt={`${frameType} square badge`}
+                        alt={`${frameType} square Frame`}
                         className="w-6 h-6"
                       />
                       <span className="font-bold text-foreground">
-                        Square Badge
+                        Square Frame
                       </span>
                     </div>
                     <Button
-                      onClick={() => downloadBadge("square")}
+                      onClick={() => downloadFrame("square")}
                       disabled={!image}
                       size="sm"
                       className="bg-black hover:bg-gray-800 text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -457,21 +457,21 @@ const YourBadge = () => {
                   </div>
                 </div>
 
-                {/* Circle Badge Preview */}
+                {/* Circle Frame Preview */}
                 <div className="border border-border rounded-lg bg-background p-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <img
                         src={`/images/elements/about.svg`}
-                        alt={`${frameType} circle badge`}
+                        alt={`${frameType} circle Frame`}
                         className="w-6 h-6"
                       />
                       <span className="font-bold text-foreground">
-                        Circle Badge
+                        Circular Frame
                       </span>
                     </div>
                     <Button
-                      onClick={() => downloadBadge("circle")}
+                      onClick={() => downloadFrame("circle")}
                       disabled={!image}
                       size="sm"
                       className="bg-black hover:bg-gray-800 text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -508,4 +508,4 @@ const YourBadge = () => {
   );
 };
 
-export default YourBadge;
+export default YourFrame;
