@@ -1,0 +1,51 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F3F4F6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="white" opacity="0.1"/>
+  <circle cx="700" cy="300" r="80" fill="white" opacity="0.1"/>
+  <circle cx="650" cy="80" r="30" fill="white" opacity="0.1"/>
+  
+  <!-- Ticket content area -->
+  <rect x="40" y="40" width="720" height="320" rx="20" fill="white" opacity="0.95"/>
+  
+  <!-- Header section -->
+  <rect x="60" y="60" width="680" height="80" rx="15" fill="url(#bgGradient)"/>
+  
+  <!-- Event title -->
+  <text x="400" y="105" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="32" font-weight="bold">CLOUD COMMUNITY DAY</text>
+  <text x="400" y="130" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">2025 - KOLKATA</text>
+  
+  <!-- Content area -->
+  <rect x="80" y="160" width="400" height="180" rx="10" fill="#F8FAFC"/>
+  
+  <!-- Event details -->
+  <text x="100" y="190" fill="#1F2937" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Event Details</text>
+  <text x="100" y="220" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Date: March 15, 2025</text>
+  <text x="100" y="245" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Time: 9:00 AM - 6:00 PM</text>
+  <text x="100" y="270" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Venue: GDG Kolkata</text>
+  <text x="100" y="295" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Type: Attendee</text>
+  
+  <!-- QR Code placeholder area -->
+  <rect x="520" y="160" width="200" height="180" rx="10" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+  <text x="620" y="250" text-anchor="middle" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="14">QR CODE</text>
+  <text x="620" y="270" text-anchor="middle" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">WILL BE</text>
+  <text x="620" y="290" text-anchor="middle" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">GENERATED</text>
+  
+  <!-- Decorative lines -->
+  <line x1="500" y1="160" x2="500" y2="340" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="5,5"/>
+</svg> 

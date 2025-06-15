@@ -1,0 +1,48 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#F5F5DC"/>
+  
+  <!-- Subtle texture -->
+  <defs>
+    <pattern id="texture" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="#E8E8D0" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#texture)"/>
+  
+  <!-- Main ticket -->
+  <rect x="40" y="40" width="720" height="320" rx="30" fill="#FAF9F6" stroke="#D2B48C" stroke-width="2"/>
+  
+  <!-- Header section -->
+  <rect x="60" y="60" width="680" height="90" rx="20" fill="#8B7355"/>
+  
+  <!-- Event title -->
+  <text x="400" y="105" text-anchor="middle" fill="#FAF9F6" font-family="Arial, sans-serif" font-size="26" font-weight="bold">CLOUD COMMUNITY DAY</text>
+  <text x="400" y="130" text-anchor="middle" fill="#D2B48C" font-family="Arial, sans-serif" font-size="14">2025 - KOLKATA</text>
+  
+  <!-- Content area -->
+  <rect x="80" y="170" width="420" height="180" rx="15" fill="#FDFDFD"/>
+  
+  <!-- Event details -->
+  <text x="100" y="200" fill="#8B7355" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Event Information</text>
+  <text x="100" y="230" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Date: March 15, 2025</text>
+  <text x="100" y="255" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Time: 9:00 AM - 6:00 PM</text>
+  <text x="100" y="280" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Venue: GDG Kolkata</text>
+  <text x="100" y="305" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Type: Attendee</text>
+  <text x="100" y="330" fill="#8B7355" font-family="Arial, sans-serif" font-size="12" font-style="italic">Minimalist Design</text>
+  
+  <!-- QR Code placeholder -->
+  <rect x="520" y="170" width="220" height="180" rx="15" fill="#F5F5DC" stroke="#D2B48C" stroke-width="2"/>
+  <text x="630" y="260" text-anchor="middle" fill="#8B7355" font-family="Arial, sans-serif" font-size="14" font-weight="bold">QR CODE</text>
+  <text x="630" y="285" text-anchor="middle" fill="#8B7355" font-family="Arial, sans-serif" font-size="12">WILL BE</text>
+  <text x="630" y="305" text-anchor="middle" fill="#8B7355" font-family="Arial, sans-serif" font-size="12">GENERATED</text>
+  
+  <!-- Elegant separator -->
+  <line x1="500" y1="170" x2="500" y2="350" stroke="#D2B48C" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Corner accents -->
+  <circle cx="80" cy="80" r="3" fill="#8B7355"/>
+  <circle cx="720" cy="80" r="3" fill="#8B7355"/>
+  <circle cx="80" cy="320" r="3" fill="#8B7355"/>
+  <circle cx="720" cy="320" r="3" fill="#8B7355"/>
+</svg> 

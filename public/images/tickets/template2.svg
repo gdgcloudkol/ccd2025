@@ -1,0 +1,43 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#111827"/>
+  
+  <!-- Decorative geometric elements -->
+  <polygon points="0,0 100,0 0,100" fill="#374151" opacity="0.3"/>
+  <polygon points="800,400 700,400 800,300" fill="#374151" opacity="0.3"/>
+  <circle cx="750" cy="50" r="60" fill="#4B5563" opacity="0.2"/>
+  <circle cx="50" cy="350" r="40" fill="#4B5563" opacity="0.2"/>
+  
+  <!-- Main ticket area -->
+  <rect x="30" y="30" width="740" height="340" rx="25" fill="#1F2937"/>
+  
+  <!-- Header with accent -->
+  <rect x="50" y="50" width="700" height="100" rx="20" fill="#3B82F6"/>
+  
+  <!-- Event branding -->
+  <text x="400" y="95" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="bold">CLOUD COMMUNITY DAY</text>
+  <text x="400" y="125" text-anchor="middle" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="16">2025 - KOLKATA</text>
+  
+  <!-- Content section -->
+  <rect x="70" y="170" width="380" height="180" rx="15" fill="#374151"/>
+  
+  <!-- Event information -->
+  <text x="90" y="200" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">EVENT DETAILS</text>
+  <text x="90" y="230" fill="#D1D5DB" font-family="Arial, sans-serif" font-size="14">📅 Date: March 15, 2025</text>
+  <text x="90" y="255" fill="#D1D5DB" font-family="Arial, sans-serif" font-size="14">🕘 Time: 9:00 AM - 6:00 PM</text>
+  <text x="90" y="280" fill="#D1D5DB" font-family="Arial, sans-serif" font-size="14">📍 Venue: GDG Kolkata</text>
+  <text x="90" y="305" fill="#D1D5DB" font-family="Arial, sans-serif" font-size="14">👤 Type: Attendee</text>
+  <text x="90" y="330" fill="#3B82F6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">#CCD2025 #KOLKATA</text>
+  
+  <!-- QR Code area -->
+  <rect x="480" y="170" width="240" height="180" rx="15" fill="#111827" stroke="#4B5563" stroke-width="2"/>
+  <text x="600" y="260" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="16" font-weight="bold">QR CODE</text>
+  <text x="600" y="285" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">WILL BE</text>
+  <text x="600" y="305" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">GENERATED</text>
+  
+  <!-- Modern accent line -->
+  <rect x="460" y="170" width="4" height="180" fill="#3B82F6"/>
+  
+  <!-- Bottom accent -->
+  <rect x="50" y="320" width="700" height="4" fill="#3B82F6"/>
+</svg> 
