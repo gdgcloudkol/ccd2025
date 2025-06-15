@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -25,7 +25,7 @@ import { extractGithubUsername } from "@/lib/utils";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import {
   Form,
@@ -39,6 +39,7 @@ import { Switch } from "@/components/ui/switch";
 import { UserProfile } from "@/types/login";
 import { SubmitHandler } from "react-hook-form";
 import { useSession } from "next-auth/react";
+import YourBadge from "./YourBadge";
 
 type FormValues = {
   firstName: string;
@@ -64,10 +65,37 @@ export default function ProfileCard({
   user: UserProfile;
   session: Session;
 }) {
-  const [activeTab, setActiveTab] = useState("My Profile");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { update } = useSession();
+  
+  // Get initial tab from URL or default to "My Profile"
+  const getInitialTab = () => {
+    const tabFromUrl = searchParams.get('tab');
+    const validTabs = ["My Profile", "Points", "Leaderboard", "Your Badge"];
+    return validTabs.includes(tabFromUrl || "") ? tabFromUrl : "My Profile";
+  };
+  
+  const [activeTab, setActiveTab] = useState(getInitialTab);
+
+  // Update URL when tab changes
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', tab);
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
+
+  // Sync with URL changes
+  useEffect(() => {
+    const tabFromUrl = searchParams.get('tab');
+    const validTabs = ["My Profile", "Points", "Leaderboard", "Your Badge"];
+    if (tabFromUrl && validTabs.includes(tabFromUrl) && tabFromUrl !== activeTab) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [searchParams, activeTab]);
+
   const formSchema = z.object({
     firstName: z.string().min(1, { message: "First name is required" }),
     lastName: z.string().min(1, { message: "Last name is required" }),
@@ -76,7 +104,7 @@ export default function ProfileCard({
       .email({ message: "Invalid email address" })
       .default(session.user.email || ""),
     company: z.string().optional(),
-    role: z.string().min(1, { message: "Role is required" }).optional(),
+    role: z.string().optional(),
     pronoun: z.string().optional(),
     phone: z.string().optional(),
     college: z.string().optional(),
@@ -300,13 +328,13 @@ export default function ProfileCard({
 
           {/* Navigation tabs */}
           <div className="mb-8 flex flex-wrap gap-2 sm:gap-6">
-            {["My Profile", "Points", "Leaderboard"].map((tab) => (
+            {["My Profile", "Your Badge","Points", "Leaderboard"].map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
+                onClick={() => handleTabChange(tab)}
+                className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors border border-gray-200 dark:border-muted cursor-pointer ${
                   activeTab === tab
-                    ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white"
+                    ? "bg-[#076eff] text-white dark:bg-[#076eff] dark:text-white border-0"
                     : "text-[#676c72] hover:text-[#000000] dark:text-[#e5e7eb] dark:hover:text-white"
                 }`}
               >
@@ -642,6 +670,7 @@ export default function ProfileCard({
           {activeTab === "Points" && <Points />}
 
           {activeTab === "Leaderboard" && <LeaderBoard />}
+           {activeTab === "Your Badge" && <YourBadge />}
         </div>
       </CardContainer>
     </div>
