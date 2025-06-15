@@ -2,6 +2,7 @@
 
 import { ChevronsDown, ChevronsUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface Speaker {
   id: string;
@@ -114,7 +115,7 @@ const SpeakersSection: React.FC = () => {
                   <img
                     src="/images/elements/resources-speaker.svg"
                     alt=""
-                    className="w-5 h-5 dark:invert"
+                    className="w-5 h-5 "
                   />
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-1 md:gap-4 md:p-4 pt-4 rounded-t-2xl">
@@ -238,8 +239,8 @@ const SpeakersSection: React.FC = () => {
       )}
 
       {dialogSpeaker && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-xl shadow-lg max-w-lg w-full p-6 relative">
+        <div className="fixed inset-0 flex items-center justify-center  bg-black/40 z-[999]">
+          <div className="bg-white rounded-xl shadow-lg max-w-lg w-full p-6 relative translate-y-5">
             <button
               className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
               onClick={() => setDialogSpeaker(null)}
@@ -261,11 +262,11 @@ const SpeakersSection: React.FC = () => {
               <div className="text-base text-gray-700 mb-2 text-center">
                 {dialogSpeaker.tagLine}
               </div>
-              <div className="max-h-[40dvh] overflow-y-scroll">
+              <ScrollArea className="h-[300px] max-h-[350px] w-full rounded-md p-4">
               <div className="text-gray-600 text-center whitespace-pre-line ">
                 {dialogSpeaker.bio}
               </div>
-              </div>
+          </ScrollArea>
             </div>
           </div>
         </div>
